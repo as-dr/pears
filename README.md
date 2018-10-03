@@ -32,6 +32,7 @@ hangtime/
 `A` - the user starting the action
 
 `B` - every other user
+
 ```
                             +---+
                             | A |
