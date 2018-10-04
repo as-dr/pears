@@ -1,0 +1,28 @@
+{
+  "name": "hangtime",
+  "version": "0.1.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "watchify src/index.js -t sheetify -o bundles/bundle.js",
+    "build": "browserify src/index.js -t sheetify -o bundles/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/as-dr/noname.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/as-dr/noname/issues"
+  },
+  "homepage": "https://github.com/as-dr/noname#readme",
+  "dependencies": {
+    "browserify": "^16.2.2",
+    "choo": "^6.13.0",
+    "nanocomponent": "^6.5.2",
+    "nanohtml": "^1.2.4",
+    "sheetify": "^7.3.3",
+    "watchify": "^3.11.0"
+  }
+}
