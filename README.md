@@ -2,9 +2,15 @@
 
 A shared space that's invisible but audible?
 
+## development
+```
+npm install
+npm start
+```
+
 ### file structure sketch
 
-How should the whole project look like approximately.
+How should the whole project look like, approximately.
 
 ```
 hangtime/
