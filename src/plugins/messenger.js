@@ -1,4 +1,4 @@
-
+// plugin for handling talking between computer
 
 module.exports = plugin
 
@@ -11,6 +11,8 @@ function plugin() {
 
 	return function (state, emitter) {
 
+		// todo this whole thing
+
 		emitter.on(state.events.DOMCONTENTLOADED, loaded)
 		emitter.on('messenger:broadcast', broadcast)
 
@@ -19,14 +21,23 @@ function plugin() {
 		})
 
 		async function loaded() {
+			await experimental.datPeers.setSessionData({
+	  			name: 'Bob',
+	  			url: 'dat://bob.com'
+			})
+
 			var peers = await experimental.datPeers.list()
-			console.log(peers)
+			emitter.emit('messenger:broadcast', 'heys')
 		}
 
 		// message to everyone
 		async function broadcast(msg) {
 			// todo: setup message
 			await experimental.datPeers.broadcast({msg: msg})
+		}
+
+		async function message({peer, message}) {
+			console.log(peer.id + ' : ' + message)
 		}
 	}
 }
