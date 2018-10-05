@@ -1,12 +1,8 @@
-const renderHttp = require('./http')
-const renderMain = require('./main')
-const renderWelcome = require('./welcome')
-
 module.exports = function(state, emit) {
 	// check if it's dat:// or not
-	if (!state.p2p) return renderHttp()
+	if (!state.p2p) return require('./http')(state, emit)
 	// check if it was set up
-	if (state.setup) return renderWelcome()
+	if (state.setup) return require('./welcome')(state, emit)
 	// else render main view
-	return renderMain()
+	return require('./main')(state, emit)
 }

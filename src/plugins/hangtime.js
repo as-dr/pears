@@ -13,7 +13,6 @@ function plugin() {
 		emitter.on(state.events.DOMCONTENTLOADED, loaded)
 
 		function loaded() {
-			console.log(state.setup)
 			emitter.emit('render')
 		}
 	}
