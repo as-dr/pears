@@ -8,6 +8,6 @@ const app = choo()
 app.use(require('./plugins/messenger')())
 app.use(require('./plugins/hangtime')())
 
-app.route('*', require('./views/main'))
+app.route('*', require('./views/wrapper'))
 
 app.mount('body')
