@@ -1,9 +1,0 @@
-{
-  "url": "dat://f086c0c653ebadf06350bcae70c68ef027879ac5fe340d57321608f9018c1a3f/",
-  "title": "hangtime",
-  "experimental": {
-    "apis": [
-      "datPeers"
-    ]
-  }
-}
