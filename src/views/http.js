@@ -9,7 +9,7 @@ function view(state, emit) {
 		<body class="fl w-100 pa5 sans-serif f3 lh-copy">
 			<div class="w-100">
 				<div class="mb5">HANGTIME</div>
-				<div>PEER-TO-PEER ONLY APPLICATION. OPEN IT BEAKER BROWSER.</div>
+				<div>PEER-TO-PEER ONLY APPLICATION. OPEN IT <a href="https://beakerbrowser.com">BEAKER BROWSER</a>.</div>
 			</div>
 		</body>
 	`
