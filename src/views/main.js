@@ -14,6 +14,19 @@ function view(state, emit) {
 				<div class="mb3">${state.hangtime.peers.length + 1} LISTENERS</div>
 				${playlist.render()}
 			</div>
+			${state.hangtime.list.map(test)}
+			<a href="#" onclick="${add_random}">add random number</a>
 		</body>
 	`
+
+	function test(a) {
+		return html`
+			<span class="mr2">${a}</span>
+		`
+	}
+
+	function add_random(e) {
+		e.preventDefault()
+		emit('hangtime:add', Math.random())
+	}
 }

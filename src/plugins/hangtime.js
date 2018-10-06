@@ -22,11 +22,13 @@ function plugin() {
 
 		state.hangtime = {
 			peers: [],
-			me: null
+			me: null,
+			list: []
 		}
 
 		emitter.on(state.events.DOMCONTENTLOADED, loaded)
 		emitter.on('hangtime:loaded', loaded)
+		emitter.on('hangtime:add', add)
 
 		function loaded(dat_url) {
 			local_archive = local_archive || dat_url
@@ -37,6 +39,12 @@ function plugin() {
 			} else if (state.p2p) {
 				emitter.emit('messenger:clearpeer')
 			}
+		}
+
+		async function add(value) {
+			state.hangtime.list.push(value)
+			emitter.emit('messenger:add', value)
+			emitter.emit('render')
 		}
 	}
 }

@@ -2,11 +2,18 @@
 
 module.exports = plugin
 
+const MESSAGE_TYPES = {
+	UPDATEPEERS: 'updatepeers',
+	NEWPEER: 'newpeer',
+	UPDATELIST: 'updatelist',
+	ADD: 'add'
+}
+
 function plugin() {
 	return function (state, emitter) {
 		emitter.on('messenger:newpeer', newpeer)
 		emitter.on('messenger:clearpeer', clearpeer)
-		emitter.on('messenger:broadcast', broadcast)
+		emitter.on('messenger:add', add)
 
 		// sets up new messaging peer
 		async function newpeer(dat_url, color) {
@@ -22,7 +29,7 @@ function plugin() {
 
 			await updatepeers() // triggers render
 
-			notify_peers()
+			notify_peers(true)
 		}
 
 		// clear datPeers session data
@@ -31,28 +38,46 @@ function plugin() {
 			notify_peers()
 		}
 
-		// message to everyone
-		async function broadcast(msg) {
-			// todo: encode message
-			await experimental.datPeers.broadcast({msg: msg})
+		// add to list
+		async function add(value) {
+			await experimental.datPeers.broadcast({
+				type: MESSAGE_TYPES.ADD,
+				value: value
+			})
+		}
+
+		// notify all peers that something's changed with someone's data
+		async function notify_peers(newpeer) {
+			await experimental.datPeers.broadcast({
+				type: newpeer === true ? MESSAGE_TYPES.NEWPEER : MESSAGE_TYPES.UPDATEPEERS
+			})
 		}
 
 		// received message
 		async function onmessage(data) {
 			switch (data.message.type) {
-			case 'peerschanged':
+			case MESSAGE_TYPES.UPDATEPEERS:
 				await updatepeers()
+				break;
+			case MESSAGE_TYPES.NEWPEER:
+				await data.peer.send({type: MESSAGE_TYPES.UPDATELIST, list: state.hangtime.list})
+				await updatepeers()
+				break;
+			case MESSAGE_TYPES.UPDATELIST:
+				if (state.hangtime.list.length == 0 && data.message.list.length > 0) {
+					state.hangtime.list = data.message.list
+					emitter.emit('render')
+				}
+				break;
+			case MESSAGE_TYPES.ADD:
+				state.hangtime.list.push(data.message.value)
+				emitter.emit('render')
 				break;
 			default:
 				const peer = await experimental.datPeers.get(data.peer.id)
 				console.log(peer.sessionData.color + ' : ' + data.message.msg)
 				break;
 			}
-		}
-
-		// notify all peers that something's changed with someone's data
-		async function notify_peers() {
-			await experimental.datPeers.broadcast({type: 'peerschanged'})
 		}
 
 		// update the list of peers
