@@ -12,7 +12,10 @@ function plugin() {
 		state.setup = !local_archive
 		try {
 			new DatArchive(window.location.href)
-			state.p2p = true;
+			// check if datPeers is available
+			if (window.experimental && window.experimental.datPeers) {
+				state.p2p = true;
+			}
 		} catch (e) {
 			state.p2p = false;
 		}
@@ -29,6 +32,8 @@ function plugin() {
 				archive = new DatArchive(local_archive)
 				const color = localStorage.getItem('avatar') || 'salmon'
 				emitter.emit('messenger:newpeer', local_archive, color)
+			} else if (state.p2p) {
+				emitter.emit('messenger:clearpeer')
 			}
 		}
 	}

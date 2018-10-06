@@ -4,12 +4,8 @@ module.exports = plugin
 
 function plugin() {
 	return function (state, emitter) {
-		if (state.p2p && (!window.experimental || !window.experimental.datPeers)) {
-			console.error('Please update Beaker to a newer version.')
-			return
-		}
-
 		emitter.on('messenger:newpeer', newpeer)
+		emitter.on('messenger:clearpeer', clearpeer)
 		emitter.on('messenger:broadcast', broadcast)
 
 		// sets up new messaging peer
@@ -21,10 +17,20 @@ function plugin() {
 
 			experimental.datPeers.addEventListener('message', message)
 
-			state.hangtime.peers = await experimental.datPeers.list()
+			var peers = await experimental.datPeers.list()
+			state.hangtime.peers = []
+			for (var i = 0; i < peers.length; i++) {
+				const peer = await experimental.datPeers.get(peers[i].id)
+				if (peer.sessionData && peer.sessionData.archive != undefined) state.hangtime.peers.push(peers[i])
+			}
 
 			emitter.emit('messenger:broadcast', 'hello')
 			emitter.emit('render')
+		}
+
+		// clear datPeers session data
+		async function clearpeer() {
+			await experimental.datPeers.setSessionData(null)
 		}
 
 		// message to everyone
