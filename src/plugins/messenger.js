@@ -3,41 +3,40 @@
 module.exports = plugin
 
 function plugin() {
-	// check if the datPeers API is available
-	if (!window.experimental || !window.experimental.datPeers) {
-		console.error('Please update Beaker to a newer version.')
-		return null
-	}
-
 	return function (state, emitter) {
+		if (state.p2p && (!window.experimental || !window.experimental.datPeers)) {
+			console.error('Please update Beaker to a newer version.')
+			return
+		}
 
-		// todo this whole thing
-
-		emitter.on(state.events.DOMCONTENTLOADED, loaded)
+		emitter.on('messenger:newpeer', newpeer)
 		emitter.on('messenger:broadcast', broadcast)
 
-		experimental.datPeers.addEventListener('message', function (peer, message) {
-  			console.log(peer.id, 'has sent the following message:', message)
-		})
-
-		async function loaded() {
+		// sets up new messaging peer
+		async function newpeer(dat_url, color) {
 			await experimental.datPeers.setSessionData({
-	  			name: 'Bob',
-	  			url: 'dat://bob.com'
+	  			archive: dat_url,
+	  			color: color
 			})
 
-			var peers = await experimental.datPeers.list()
-			emitter.emit('messenger:broadcast', 'heys')
+			experimental.datPeers.addEventListener('message', message)
+
+			state.hangtime.peers = await experimental.datPeers.list()
+
+			emitter.emit('messenger:broadcast', 'hello')
+			emitter.emit('render')
 		}
 
 		// message to everyone
 		async function broadcast(msg) {
-			// todo: setup message
+			// todo: encode message
 			await experimental.datPeers.broadcast({msg: msg})
 		}
 
-		async function message({peer, message}) {
-			console.log(peer.id + ' : ' + message)
+		async function message(data) {
+			// todo: decode message
+			const peer = await experimental.datPeers.get(data.peer.id)
+			console.log(peer.sessionData.color + ' : ' + data.message.msg)
 		}
 	}
 }

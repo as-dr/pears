@@ -33,11 +33,6 @@ module.exports = class Playlist extends Component {
 			{
 				"type": "message",
 				"text": "A NEW LISTENER JOINED",
-				"color": 'salmon'
-			},
-			{
-				"type": "message",
-				"text": "A NEW LISTENER JOINED",
 				"color": 'red'
 			},
 			{

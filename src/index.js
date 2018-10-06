@@ -12,8 +12,8 @@ app.use((state, emitter) => {
 	})
 })
 app.use(require('./plugins/setup'))
-// app.use(require('./plugins/messenger')())
 app.use(require('./plugins/hangtime')())
+app.use(require('./plugins/messenger')())
 
 app.route('*', require('./views/wrapper'))
 

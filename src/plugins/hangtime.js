@@ -4,6 +4,8 @@ module.exports = plugin
 
 function plugin() {
 	return function (state, emitter) {
+		var archive = null
+
 		// check if data exists in localstorage
 		const local_archive = localStorage.getItem('local_archive')
 
@@ -15,10 +17,19 @@ function plugin() {
 			state.p2p = false;
 		}
 
+		state.hangtime = {
+			peers: []
+		}
+
 		emitter.on(state.events.DOMCONTENTLOADED, loaded)
+		emitter.on('hangtime:loaded', loaded)
 
 		function loaded() {
-			emitter.emit('render')
+			if (state.p2p && !state.setup) {
+				archive = new DatArchive(local_archive)
+				const color = localStorage.getItem('avatar') || 'salmon'
+				emitter.emit('messenger:newpeer', local_archive, color)
+			}
 		}
 	}
 }
