@@ -14,23 +14,21 @@ function plugin() {
 	  			archive: dat_url,
 	  			color: color
 			})
+			state.hangtime.me = await experimental.datPeers.getSessionData()
 
-			experimental.datPeers.addEventListener('message', message)
+			experimental.datPeers.addEventListener('message', onmessage)
+			experimental.datPeers.addEventListener('connect', updatepeers)
+			experimental.datPeers.addEventListener('disconnect', updatepeers)
 
-			var peers = await experimental.datPeers.list()
-			state.hangtime.peers = []
-			for (var i = 0; i < peers.length; i++) {
-				const peer = await experimental.datPeers.get(peers[i].id)
-				if (peer.sessionData && peer.sessionData.archive != undefined) state.hangtime.peers.push(peers[i])
-			}
+			await updatepeers() // triggers render
 
-			emitter.emit('messenger:broadcast', 'hello')
-			emitter.emit('render')
+			notify_peers()
 		}
 
 		// clear datPeers session data
 		async function clearpeer() {
 			await experimental.datPeers.setSessionData(null)
+			notify_peers()
 		}
 
 		// message to everyone
@@ -39,10 +37,33 @@ function plugin() {
 			await experimental.datPeers.broadcast({msg: msg})
 		}
 
-		async function message(data) {
-			// todo: decode message
-			const peer = await experimental.datPeers.get(data.peer.id)
-			console.log(peer.sessionData.color + ' : ' + data.message.msg)
+		// received message
+		async function onmessage(data) {
+			switch (data.message.type) {
+			case 'peerschanged':
+				await updatepeers()
+				break;
+			default:
+				const peer = await experimental.datPeers.get(data.peer.id)
+				console.log(peer.sessionData.color + ' : ' + data.message.msg)
+				break;
+			}
+		}
+
+		// notify all peers that something's changed with someone's data
+		async function notify_peers() {
+			await experimental.datPeers.broadcast({type: 'peerschanged'})
+		}
+
+		// update the list of peers
+		async function updatepeers() {
+			var peers = await experimental.datPeers.list()
+			state.hangtime.peers = []
+			for (var i = 0; i < peers.length; i++) {
+				const peer = await experimental.datPeers.get(peers[i].id)
+				if (peer.sessionData && peer.sessionData.archive != undefined) state.hangtime.peers.push(peers[i])
+			}
+			emitter.emit('render')
 		}
 	}
 }

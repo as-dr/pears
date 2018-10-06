@@ -7,7 +7,7 @@ function plugin() {
 		var archive = null
 
 		// check if data exists in localstorage
-		const local_archive = localStorage.getItem('local_archive')
+		var local_archive = localStorage.getItem('local_archive')
 
 		state.setup = !local_archive
 		try {
@@ -21,13 +21,15 @@ function plugin() {
 		}
 
 		state.hangtime = {
-			peers: []
+			peers: [],
+			me: null
 		}
 
 		emitter.on(state.events.DOMCONTENTLOADED, loaded)
 		emitter.on('hangtime:loaded', loaded)
 
-		function loaded() {
+		function loaded(dat_url) {
+			local_archive = local_archive || dat_url
 			if (state.p2p && !state.setup) {
 				archive = new DatArchive(local_archive)
 				const color = localStorage.getItem('avatar') || 'salmon'

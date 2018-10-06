@@ -18,6 +18,6 @@ function plugin(state, emitter) {
 		localStorage.setItem('local_archive', archive.url)
 		localStorage.setItem('avatar', color)
 		state.setup = false
-		emitter.emit('hangtime:loaded')
+		emitter.emit('hangtime:loaded', archive.url)
 	})
 }
