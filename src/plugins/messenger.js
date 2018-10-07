@@ -60,11 +60,13 @@ function plugin() {
 				await updatepeers()
 				break;
 			case MESSAGE_TYPES.NEWPEER:
-				await data.peer.send({type: MESSAGE_TYPES.UPDATELIST, list: state.hangtime.list})
+				if (state.hangtime.list.length > 0) {
+					await data.peer.send({type: MESSAGE_TYPES.UPDATELIST, list: state.hangtime.list})
+				}
 				await updatepeers()
 				break;
 			case MESSAGE_TYPES.UPDATELIST:
-				if (state.hangtime.list.length == 0 && data.message.list.length > 0) {
+				if (data.message.list.length > state.hangtime.list.length) {
 					state.hangtime.list = data.message.list
 					emitter.emit('render')
 				}

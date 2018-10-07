@@ -29,6 +29,7 @@ function plugin() {
 		emitter.on(state.events.DOMCONTENTLOADED, loaded)
 		emitter.on('hangtime:loaded', loaded)
 		emitter.on('hangtime:add', add)
+		emitter.on('hangtime:file', write_file)
 
 		function loaded(dat_url) {
 			local_archive = local_archive || dat_url
@@ -45,6 +46,11 @@ function plugin() {
 			state.hangtime.list.push(value)
 			emitter.emit('messenger:add', value)
 			emitter.emit('render')
+		}
+
+		async function write_file(file) {
+			await archive.writeFile(file.name, file.data)
+			emitter.emit('hangtime:add', archive.url + '/' + file.name)
 		}
 	}
 }
