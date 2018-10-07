@@ -43,7 +43,11 @@ function plugin() {
 		}
 
 		async function add(value) {
-			state.hangtime.list.push(value)
+			state.hangtime.list.push({
+				type: "song",
+				text: value,
+				color: state.hangtime.me.color
+			})
 			emitter.emit('messenger:add', value)
 			emitter.emit('render')
 		}

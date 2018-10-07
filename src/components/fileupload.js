@@ -14,7 +14,7 @@ module.exports = class FileUpload extends Component {
 		const t = this
 
 		return html`
-			<div class="fl pa5 fixed top-0 left-0 w-100 h-100 bg-white-80 b--light-pink bw2 ${!this.visible ? 'dn' : ''}" 
+			<div class="fl pa5 fixed top-0 left-0 w-100 h-100 bg-white-80 b--light-pink bw2 ${!this.visible ? 'dn' : ''}"
 				ondragover="${drag_over}" ondragleave="${drag_leave}" ondrop="${drop}">
 				<a href="#" class="dib mr10 color-inherit" onclick="${back}">BACK</a>
 				<div class="dib f-subheadline color-blue">DROP TO ADD THE SONG</div>
@@ -40,18 +40,11 @@ module.exports = class FileUpload extends Component {
 			reader.onload = async function (e) {
 				var result = e.target.result
 				t.visible = false
-				emit('hangtime:file', {name: sanitize(file.name), data: result})
+				emit('hangtime:file', {name: file.name, data: result})
 			}
 
 			reader.readAsArrayBuffer(file)
 			this.classList.remove('ba')
-
-			function sanitize(str) {
-				return str
-					.toLowerCase()
-					.replace(/\s+/g, '-')
-					.replace(/[,\/#!@?$%\^&\*;:{}=\_`~()\'\"]/g, '')
-			}
 		}
 
 		function back(e) {
@@ -66,6 +59,6 @@ module.exports = class FileUpload extends Component {
 	}
 
 	update(emit) {
-		return false
+		return true
 	}
 }

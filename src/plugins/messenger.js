@@ -72,12 +72,13 @@ function plugin() {
 				}
 				break;
 			case MESSAGE_TYPES.ADD:
-				state.hangtime.list.push(data.message.value)
-				emitter.emit('render')
-				break;
-			default:
 				const peer = await experimental.datPeers.get(data.peer.id)
-				console.log(peer.sessionData.color + ' : ' + data.message.msg)
+				state.hangtime.list.push({
+					type: "song",
+					text: data.message.value,
+					color: peer.sessionData.color
+				})
+				emitter.emit('render')
 				break;
 			}
 		}

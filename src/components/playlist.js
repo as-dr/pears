@@ -4,9 +4,24 @@
 
 list = [
 {
-"type": "song",
-"text": "BOWIE - ASHES TO ASHES",
-"color": "#ff00ff"
+	"type": "song",
+	"text": "BOWIE - ASHES TO ASHES",
+	"color": 'salmon'
+},
+{
+	"type": "song",
+	"text": "TOOL - THE POT",
+	"color": 'pink'
+},
+{
+	"type": "message",
+	"text": "A NEW LISTENER JOINED",
+	"color": 'red'
+},
+{
+	"type": "song",
+	"text": "Pink Floyd - Hey You.mp3",
+	"color": 'red'
 }
 ]
 
@@ -19,33 +34,13 @@ module.exports = class Playlist extends Component {
 	constructor() {
 		super()
 
-		this.list = [
-			{
-				"type": "song",
-				"text": "BOWIE - ASHES TO ASHES",
-				"color": 'salmon'
-			},
-			{
-				"type": "song",
-				"text": "TOOL - THE POT",
-				"color": 'pink'
-			},
-			{
-				"type": "message",
-				"text": "A NEW LISTENER JOINED",
-				"color": 'red'
-			},
-			{
-				"type": "song",
-				"text": "Pink Floyd - Hey You.mp3",
-				"color": 'red'
-			}
-		]
+		this.list = []
 		this.current_index = 0 // don't forget to skip messages
 	}
 
-	createElement() {
+	createElement(list) {
 		const t = this
+		this.list = list
 		return html`
 			<div class="w-100">
 				${this.list.slice(0).reverse().slice(0, 12).map(renderItem)}
@@ -64,12 +59,10 @@ module.exports = class Playlist extends Component {
 		function renderSong(item, id) {
 			var state = (t.list.length - id - 1) - t.current_index // 0 = current song, < 0 = played, > = in queue
 
-			item.text = item.text.replace('.mp3', '')
-
 			return html`
 				<div class="w-100 mv2">
 					${avatar(item.color)}
-					<span class="ttu ${state != 0 ? (state < 0) ? 'strike o-30' : 'o-30' : ''}">${item.text}</span>
+					<span class="ttu ${state != 0 ? (state < 0) ? 'strike o-30' : 'o-30' : ''}">${songtitle(item.text)}</span>
 				</div>
 			`
 		}
@@ -122,7 +115,13 @@ module.exports = class Playlist extends Component {
 		}
 	}
 
-	update() {
+	update(list) {
 		return true
 	}
+}
+
+// todo
+function songtitle(text) {
+	var sp = text.split('/')
+	return sp[sp.length - 1]
 }
