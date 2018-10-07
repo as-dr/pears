@@ -15,7 +15,7 @@ function view(state, emit) {
 			<div class="w-100 mw7 center">
 				<div class="mb3">${state.hangtime.peers.length + 1} LISTENERS</div>
 				<a href="#" class="mb3 color-inherit" onclick="${show_uploader}">+ ADD SONG</a>
-				${playlist.render(state.hangtime.list)}
+				${playlist.render(state.hangtime.list, state.hangtime.position)}
 			</div>
 			${fileupload.render(emit)}
 		</body>

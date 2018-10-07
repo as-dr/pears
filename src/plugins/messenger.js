@@ -11,6 +11,8 @@ const MESSAGE_TYPES = {
 
 function plugin() {
 	return function (state, emitter) {
+		var res_received = 0
+
 		emitter.on('messenger:newpeer', newpeer)
 		emitter.on('messenger:clearpeer', clearpeer)
 		emitter.on('messenger:add', add)
@@ -48,6 +50,7 @@ function plugin() {
 
 		// notify all peers that something's changed with someone's data
 		async function notify_peers(newpeer) {
+			res_received = 0
 			await experimental.datPeers.broadcast({
 				type: newpeer === true ? MESSAGE_TYPES.NEWPEER : MESSAGE_TYPES.UPDATEPEERS
 			})
@@ -61,13 +64,30 @@ function plugin() {
 				break;
 			case MESSAGE_TYPES.NEWPEER:
 				if (state.hangtime.list.length > 0) {
-					await data.peer.send({type: MESSAGE_TYPES.UPDATELIST, list: state.hangtime.list})
+					await data.peer.send({
+						type: MESSAGE_TYPES.UPDATELIST,
+						list: state.hangtime.list,
+						position: state.hangtime.position,
+						time: state.hangtime.time
+					})
 				}
 				await updatepeers()
 				break;
 			case MESSAGE_TYPES.UPDATELIST:
+				res_received++
 				if (data.message.list.length > state.hangtime.list.length) {
 					state.hangtime.list = data.message.list
+				}
+				if (data.message.position > state.hangtime.position) {
+					state.hangtime.position = data.message.position
+				}
+				if (data.message.time > state.hangtime.time) {
+					state.hangtime.time = data.message.time
+				}
+
+				// got response from all the peers
+				if (res_received == state.hangtime.peers.length) {
+					emitter.emit('hangtime:updateplayer')
 					emitter.emit('render')
 				}
 				break;
@@ -78,6 +98,9 @@ function plugin() {
 					text: data.message.value,
 					color: peer.sessionData.color
 				})
+				if (state.hangtime.position == state.hangtime.list.length - 1) {
+					emitter.emit('hangtime:updateplayer')
+				}
 				emitter.emit('render')
 				break;
 			}

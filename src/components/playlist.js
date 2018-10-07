@@ -38,9 +38,10 @@ module.exports = class Playlist extends Component {
 		this.current_index = 0 // don't forget to skip messages
 	}
 
-	createElement(list) {
+	createElement(list, index) {
 		const t = this
 		this.list = list
+		this.current_index = index
 		return html`
 			<div class="w-100">
 				${this.list.slice(0).reverse().slice(0, 12).map(renderItem)}
