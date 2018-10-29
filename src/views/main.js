@@ -13,7 +13,7 @@ function view(state, emit) {
 	return html`
 		<body class="fl w-100 pa5 sans-serif f3 lh-copy">
 			<div class="w-100 mw7 center">
-				<div class="mb3">${state.hangtime.peers.length + 1} LISTENERS</div>
+				<div class="mb3">${state.hangtime.peers.length + 1} LISTENER${state.hangtime.peers.length != 0 ? 'S' : ''}</div>
 				<a href="#" class="mb3 color-inherit" onclick="${show_uploader}">+ ADD SONG</a>
 				${playlist.render(state.hangtime.list, state.hangtime.position)}
 			</div>
