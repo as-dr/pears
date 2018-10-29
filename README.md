@@ -6,6 +6,7 @@ A shared space that's invisible but audible?
 ```
 git clone https://github.com/as-dr/noname
 npm install
+npm run build
 npm start
 ```
 
