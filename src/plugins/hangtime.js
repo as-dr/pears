@@ -25,7 +25,8 @@ function plugin() {
 			me: null,
 			list: [],
 			position: 0,
-			time: 0
+			time: 0,
+			finished_peers: 0
 		}
 
 		emitter.on(state.events.DOMCONTENTLOADED, loaded)
@@ -56,6 +57,8 @@ function plugin() {
 			emitter.emit('render')
 			if (state.hangtime.position == state.hangtime.list.length - 1) {
 				emitter.emit('hangtime:updateplayer')
+			} else {
+				try_preload()
 			}
 		}
 
@@ -65,15 +68,26 @@ function plugin() {
 		}
 
 		function next() {
-			state.hangtime.position++
-			if (state.hangtime.position <= state.hangtime.list.length - 1) {
-				emitter.emit('hangtime:updateplayer')
+			if (state.hangtime.finished_peers >= state.hangtime.peers.length - 1) {
+				state.hangtime.position++
+				state.hangtime.finished_peers = 0
+				if (state.hangtime.position <= state.hangtime.list.length - 1) {
+					emitter.emit('hangtime:updateplayer')
+				}
+				emitter.emit('render')
 			}
-			emitter.emit('render')
 		}
 
 		function update_player() {
 			emitter.emit('player:set', state.hangtime.list[state.hangtime.position].text)
+			// preload if possible
+			try_preload()
+		}
+
+		function try_preload() {
+			if (state.hangtime.list[state.hangtime.position + 1]) {
+				emitter.emit('player:preload', state.hangtime.list[state.hangtime.position + 1].text)
+			}
 		}
 	}
 }

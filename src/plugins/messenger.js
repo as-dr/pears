@@ -6,7 +6,8 @@ const MESSAGE_TYPES = {
 	UPDATEPEERS: 'updatepeers',
 	NEWPEER: 'newpeer',
 	UPDATELIST: 'updatelist',
-	ADD: 'add'
+	ADD: 'add',
+	FINISHED: 'finished'
 }
 
 function plugin() {
@@ -16,6 +17,7 @@ function plugin() {
 		emitter.on('messenger:newpeer', newpeer)
 		emitter.on('messenger:clearpeer', clearpeer)
 		emitter.on('messenger:add', add)
+		emitter.on('messenger:ended', ended)
 
 		// sets up new messaging peer
 		async function newpeer(dat_url, color) {
@@ -53,6 +55,13 @@ function plugin() {
 			res_received = 0
 			await experimental.datPeers.broadcast({
 				type: newpeer === true ? MESSAGE_TYPES.NEWPEER : MESSAGE_TYPES.UPDATEPEERS
+			})
+		}
+
+		// notify all peers that you finished a song
+		async function ended() {
+			await experimental.datPeers.broadcast({
+				type: MESSAGE_TYPES.FINISHED
 			})
 		}
 
@@ -102,6 +111,10 @@ function plugin() {
 					emitter.emit('hangtime:updateplayer')
 				}
 				emitter.emit('render')
+				break;
+			case MESSAGE_TYPES.FINISHED:
+				state.hangtime.finished_peers++
+				emitter.emit('hangtime:next')
 				break;
 			}
 		}
