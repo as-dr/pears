@@ -67,6 +67,10 @@ function plugin() {
 			emitter.emit('hangtime:add', archive.url + '/' + file.name)
 		}
 
+    function delete_file(filename) {
+      archive.unlink(filename)
+    }
+
 		function next() {
 			if (state.hangtime.finished_peers >= state.hangtime.peers.length - 1) {
 				state.hangtime.position++
@@ -75,6 +79,12 @@ function plugin() {
 					emitter.emit('hangtime:updateplayer')
 				}
 				emitter.emit('render')
+        // delete the previous song from your archive
+        var prevFile = state.hangtime.list[state.hangtime.position - 1].text
+        if (prevFile.indexOf(archive.url) !== -1) {
+          prevFile = prevFile.replace(archive.url, '')
+          delete_file(prevFile)
+        }
 			}
 		}
 

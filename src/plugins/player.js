@@ -12,8 +12,9 @@ function plugin() {
 
 		player.autoplay = true
 		player.preload = 'auto'
-		player.addEventListener('ended', ended)
-		player.addEventListener('timeupdate', update)
+		player.addEventListener('ended', onended)
+		player.addEventListener('timeupdate', onupdate)
+    player.addEventListener('error', onerror)
 		preloader.autoplay = false
 		preloader.preload = 'auto'
 		preloader.volume = 0
@@ -35,13 +36,19 @@ function plugin() {
 			else player.pause()
 		}
 
-		function ended() {
+    function onerror(e) {
+      console.log(e)
+      // on error we notify other peers to maybe skip the song
+      onended()
+    }
+
+		function onended() {
 			state.hangtime.time = 0
 			emitter.emit('messenger:ended')
 			emitter.emit('hangtime:next')
 		}
 
-		function update() {
+		function onupdate() {
 			state.hangtime.time = player.currentTime
 		}
 	}
