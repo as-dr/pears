@@ -36,6 +36,7 @@ function plugin() {
 			else player.pause()
 		}
 
+    // todo
     function onerror(e) {
       console.log(e)
       // on error we notify other peers to maybe skip the song

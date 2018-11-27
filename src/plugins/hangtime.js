@@ -10,15 +10,14 @@ function plugin() {
 		var local_archive = localStorage.getItem('local_archive')
 
 		state.setup = !local_archive
-		try {
-			new DatArchive(window.location.href)
-			// check if datPeers is available
-			if (window.experimental && window.experimental.datPeers) {
-				state.p2p = true;
-			}
-		} catch (e) {
-			state.p2p = false;
-		}
+    if (isDat()) {
+      // check if datPeers is available
+      if (window.experimental && window.experimental.datPeers) {
+        state.p2p = true;
+      }
+    } else {
+      state.p2p = false
+    }
 
 		state.hangtime = {
 			peers: [],
@@ -26,13 +25,14 @@ function plugin() {
 			list: [],
 			position: 0,
 			time: 0,
-			finished_peers: 0
+			finished_peers: 0,
+      responsesReceived: 0
 		}
 
 		emitter.on(state.events.DOMCONTENTLOADED, loaded)
 		emitter.on('hangtime:loaded', loaded)
 		emitter.on('hangtime:add', add)
-		emitter.on('hangtime:file', write_file)
+		emitter.on('hangtime:file', writeFile)
 		emitter.on('hangtime:next', next)
 		emitter.on('hangtime:updateplayer', update_player)
 
@@ -55,6 +55,7 @@ function plugin() {
 			})
 			emitter.emit('messenger:add', value)
 			emitter.emit('render')
+      // update the player if the new one is the next song
 			if (state.hangtime.position == state.hangtime.list.length - 1) {
 				emitter.emit('hangtime:updateplayer')
 			} else {
@@ -62,19 +63,12 @@ function plugin() {
 			}
 		}
 
-		async function write_file(file) {
-			await archive.writeFile(file.name, file.data)
-			emitter.emit('hangtime:add', archive.url + '/' + file.name)
-		}
-
-    function delete_file(filename) {
-      archive.unlink(filename)
-    }
-
 		function next() {
+      // if it's not the end of the list
 			if (state.hangtime.finished_peers >= state.hangtime.peers.length - 1) {
 				state.hangtime.position++
 				state.hangtime.finished_peers = 0
+        // update player
 				if (state.hangtime.position <= state.hangtime.list.length - 1) {
 					emitter.emit('hangtime:updateplayer')
 				}
@@ -83,7 +77,7 @@ function plugin() {
         var prevFile = state.hangtime.list[state.hangtime.position - 1].text
         if (prevFile.indexOf(archive.url) !== -1) {
           prevFile = prevFile.replace(archive.url, '')
-          delete_file(prevFile)
+          unlink(prevFile)
         }
 			}
 		}
@@ -99,5 +93,30 @@ function plugin() {
 				emitter.emit('player:preload', state.hangtime.list[state.hangtime.position + 1].text)
 			}
 		}
+
+    // fs
+    async function writeFile(file) {
+			await archive.writeFile(file.name, file.data)
+			emitter.emit('hangtime:add', archive.url + '/' + file.name)
+		}
+
+    function unlink(filename) {
+      archive.unlink(filename)
+    }
+
+    function isDat() {
+      // check if datarchive exists
+      if (typeof DatArchive !== 'undefined') {
+        // check if url is dat
+        try {
+          new DatArchive(window.location.href)
+          return true
+        } catch (e) {
+          return false
+        }
+      }
+
+      return false
+    }
 	}
 }
