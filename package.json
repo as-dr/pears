@@ -4,8 +4,8 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "watchify src/index.js -t sheetify -o bundles/bundle.js",
-    "build": "browserify src/index.js -t sheetify -o bundles/bundle.js"
+    "start": "watchify src/index.js -t sheetify -t yo-yoify -o bundles/bundle.js",
+    "build": "browserify src/index.js -t sheetify -t yo-yoify -o bundles/bundle.js"
   },
   "repository": {
     "type": "git",
@@ -18,13 +18,15 @@
   },
   "homepage": "https://github.com/as-dr/noname#readme",
   "dependencies": {
-    "browserify": "^16.2.2",
-    "bundle-js": "^1.0.2",
     "choo": "^6.13.0",
     "nanocomponent": "^6.5.2",
     "nanohtml": "^1.2.4",
     "sheetify": "^7.3.3",
-    "tachyons": "^4.10.0",
-    "watchify": "^3.11.0"
+    "tachyons": "^4.10.0"
+  },
+  "devDependencies": {
+    "browserify": "^16.2.3",
+    "watchify": "^3.11.0",
+    "yo-yoify": "^4.3.0"
   }
 }
