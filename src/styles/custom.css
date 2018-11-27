@@ -7,3 +7,18 @@ input[type="color"] {
 	border: none;
 	cursor: pointer;
 }
+
+@font-face {
+  font-family: 'Favorit';
+  src: url('src/type/favorit-light.woff2') format('woff2'),
+       url('src/type/favorit-light.eot') format('embedded-opentype'),
+       url('src/type/favorit-light.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+	font-family: 'Favorit', 'system-ui', serif ;
+	font-weight: 100 !important;
+}

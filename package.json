@@ -19,6 +19,7 @@
   "homepage": "https://github.com/as-dr/noname#readme",
   "dependencies": {
     "browserify": "^16.2.2",
+    "bundle-js": "^1.0.2",
     "choo": "^6.13.0",
     "nanocomponent": "^6.5.2",
     "nanohtml": "^1.2.4",

@@ -12,7 +12,7 @@ module.exports = class ArchiveSelection extends Component {
 	createElement(emit) {
 		const t = this
 		return html`
-			<a href="#" class="color-inherit" onclick="${select}">${this.archive == null ? 'SELECT ARCHIVE' : shorten(this.archive.url)}</a>
+			<a href="#" class="color-inherit pv2 ph3 ba link" onclick="${select}">${this.archive == null ? 'SELECT ARCHIVE' : shorten(this.archive.url)}</a>
 		`
 
 		async function select(e) {

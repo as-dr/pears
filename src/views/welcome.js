@@ -14,17 +14,18 @@ function view(state, emit) {
 
 	function step0() {
 		return html`
-			<body class="fl w-100 pa5 sans-serif f3 lh-copy">
-				<div class="fl w-100 mb6">
-					<div>HANGTIME</div>
+			<body class="w-100 min-vh-100 pa4 lh-copy">
+				<div class="flex flex-column items-center justify-around w-100 min-vh-100">
+				<div class="flex flex-column items-center justify-between w-100 mw7 ">
+				  <h2 class="f2 ttu uppercase dark-gray mv0">Hangtime</h2>
+					<h2 class="f2 gray mv0">A chill space for shared listening</h2>
 				</div>
-				<div class="fl w-100 mb6">
-					<div class="fl dib">Create your own</div>
-					<a href="#" class="fr color-inherit" onclick="${fork}">CREATE</a>
+				<div class="flex items-center justify-between w-100 mw7 ">
+					<a href="#" class="flex f2 color-inherit link bb bw1" onclick="${fork}">CREATE YOUR SPACE</a>
+					<a href="#" class="flex f2 color-inherit link bb bw1" onclick="${next}">JOIN A SPACE</a>
+
 				</div>
-				<div class="fl w-100 mb6">
-					<div class="fl dib">Or join this space</div>
-					<a href="#" class="fr color-inherit" onclick="${next}">JOIN</a>
+
 				</div>
 			</body>
 		`
