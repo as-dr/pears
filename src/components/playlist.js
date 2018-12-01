@@ -61,7 +61,7 @@ module.exports = class Playlist extends Component {
 			var state = (t.list.length - id - 1) - t.current_index // 0 = current song, < 0 = played, > = in queue
 
 			return html`
-				<div class="w-100 mv2">
+				<div class="flex flex-row items-center w-100 mv2">
 					${avatar(item.color)}
 					<span class="ttu ${state != 0 ? (state < 0) ? 'strike o-30' : 'o-30' : ''}">${songtitle(item.text)}</span>
 				</div>
@@ -70,7 +70,7 @@ module.exports = class Playlist extends Component {
 
 		function renderMessage(item) {
 			return html`
-				<div class="w-100 mv2">
+				<div class="flex flex-row items-center w-100 mv2">
 					${avatar(item.color)}
 					<span class="ttu o-30" style="color: ${item.color};">${item.text}</span>
 				</div>
@@ -79,7 +79,7 @@ module.exports = class Playlist extends Component {
 
 		function avatar(color) {
 			return html`
-				<div class="dib mr3" style="width: 20px; height: 20px; border-radius: 30px; background: ${color};"></div>
+				<div class="flex mr3" style="width: 16px; height: 16px; border-radius: 100px; background: ${color};"></div>
 			`
 		}
 	}
