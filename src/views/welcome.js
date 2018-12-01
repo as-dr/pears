@@ -70,19 +70,24 @@ function view(state, emit) {
 
 	function step2() {
 		return html`
-			<body class="fl w-100 pa5 sans-serif f3 lh-copy">
-				<div class="fl w-100 mb6">
-					<a href="#" class="fl color-inherit" onclick="${back}">BACK</a>
-					<div class="fr dib">STEP 2</div>
+		<body class="flex self-center w-100 min-vh-100 f3 lh-copy pa5-ns pa3">
+			<div class="flex flex-column w-100 h-100 mw8 justify-between">
+
+				<div class="flex flex-row w-100" style="justify-content: space-between;">
+				<a href="#" class="flex self-start color-inherit" onclick="${back}">BACK</a>
+				<h3 class="flex self-end dib mv0">STEP 2</h3>
 				</div>
-				<div class="fl w-100 mb6">
-					<div class="fl dib">This is your avatar. Give it a color and hit FINISH.</div>
-					<input id="avatar_selector" class="fr dib" type="color">
+
+				<div class="flex flex-column w-100 items-center align-center">
+					<input id="avatar_selector" class="flex mv3 bn" style="outline:0;" type="color" value="#2659ff">
+					<p>This is your avatar.</p><p> Click to give it a color, then hit 'Finish'.</p>
 				</div>
-				<div class="fl w-100 mb6">
-					<a href="#" class="fr color-inherit" onclick="${finish}">FINISH</a>
+				<div class="flex flex-row w-100 justify-between items-center align-center">
+					${as.render(emit)}
+					<a href="#" class="link flex color-inherit ph3 pv2 ba ttu uppercase ${as.archive != null ? 'o-100' : 'o-10 disabled-link'}" onclick="${finish}">Finish</a>
 				</div>
-			</body>
+			</div>
+		</body>
 		`
 
 		function finish(e) {
