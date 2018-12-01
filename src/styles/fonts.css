@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'InterUI';
+  src: url('src/type/interUIRegular.woff2') format('woff2'),
+       url('src/type/interUIRegular.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+	font-family: 'InterUI', 'system-ui', serif ;
+	font-weight: 300 !important;
+}

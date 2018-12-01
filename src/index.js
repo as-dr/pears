@@ -3,6 +3,8 @@ const css = require('sheetify')
 
 css('../node_modules/tachyons/css/tachyons.min.css')
 css('./styles/custom.css')
+css('./styles/fonts.css')
+
 
 const app = choo()
 
