@@ -41,23 +41,32 @@ function view(state, emit) {
 		}
 	}
 
+// TO DO
+// 1. Set a conditional styling for the NEXT button per my lame attempt on line 62. We should also add a link disabled property
+
 	function step1() {
 		return html`
-			<body class="fl w-100 pa5 sans-serif f3 lh-copy">
-				<div class="fl w-100 mb6">
-					<a href="#" class="fl color-inherit" onclick="${back}">BACK</a>
-					<div class="fr dib">STEP 1</div>
-				</div>
-				<div class="fl w-100 mb6">
-					<div class="fl dib">First, select a folder on your computer to stream from.</div>
-				</div>
-				<div class="fl w-100 mb6">
-					${as.render(emit)}
-					<a href="#" class="fr color-inherit" onclick="${next}">${as.archive != null ? 'NEXT' : ''}</a>
+			<body class="flex self-center w-100 min-vh-100 f3 lh-copy pa5-ns pa3">
+				<div class="flex flex-column w-100 h-100 mw8 justify-between">
+
+					<div class="flex flex-row w-100" style="justify-content: space-between;">
+					<a href="#" class="flex self-start color-inherit" onclick="${back}">BACK</a>
+					<h3 class="flex self-end dib mv0">STEP 1</h3>
+					</div>
+
+					<div class="flex w-100 justify-center align-center">
+						<p>First, select a folder on your computer to stream from.</p>
+					</div>
+					<div class="flex flex-row w-100 justify-between items-center align-center">
+						${as.render(emit)}
+						<a href="#" class="link flex color-inherit ph3 pv2 ba ttu uppercase ${as.archive != null ? 'o-100' : 'o-10 disabled-link'}" onclick="${next}">Next</a>
+					</div>
 				</div>
 			</body>
 		`
 	}
+
+
 
 	function step2() {
 		return html`
