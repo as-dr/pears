@@ -17,8 +17,8 @@ function view(state, emit) {
 			<body class="w-100 min-vh-100 pa4 lh-copy">
 				<div class="flex flex-column items-center justify-around w-100 min-vh-100">
 				<div class="flex flex-column items-center justify-between w-100 mw7 ">
-				  <h2 class="f2 ttu uppercase dark-gray mv0">Hangtime</h2>
-					<h2 class="f2 gray mv0">A chill space for shared listening</h2>
+				  <h2 class="f2 ttu uppercase dark-gray mv0">Soundscape</h2>
+					<h2 class="f2 gray mv0 tc">A chill space to share and listen to music with your friends.</h2>
 				</div>
 				<div class="flex items-center justify-between w-100 mw7 ">
 					<a href="#" class="flex f2 color-inherit link bb bw1" onclick="${fork}">CREATE YOUR SPACE</a>
