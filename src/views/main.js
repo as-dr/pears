@@ -11,10 +11,12 @@ module.exports = view
 
 function view(state, emit) {
 	return html`
-		<body class="fl w-100 pa5 sans-serif f3 lh-copy">
-			<div class="w-100 mw7 center">
-				<div class="mb3">${state.hangtime.peers.length + 1} LISTENER${state.hangtime.peers.length != 0 ? 'S' : ''}</div>
-				<a href="#" class="mb3 color-inherit" onclick="${show_uploader}">+ ADD SONG</a>
+		<body class="w-100 pa5 sans-serif f3 lh-copy">
+			<div class="flex flex-row w-100 mw7 justify-between">
+				<div class="">${state.hangtime.peers.length + 1} LISTENER${state.hangtime.peers.length != 0 ? 'S' : ''}</div>
+				<a href="#" class="link ph3 pv1 color-inherit" onclick="${show_uploader}">ADD SONG</a>
+			</div>
+			<div class="flex flex-column w-100 mw7">
 				${playlist.render(state.hangtime.list, state.hangtime.position)}
 			</div>
 			${fileupload.render(emit)}
