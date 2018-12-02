@@ -35,7 +35,8 @@ function plugin() {
 			position: 0,
 			time: 0,
 			finished_peers: 0,
-      responsesReceived: 0
+      responsesReceived: 0,
+      muted: false
 		}
 
 		emitter.on(state.events.DOMCONTENTLOADED, loaded)

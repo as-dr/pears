@@ -7,7 +7,8 @@ function plugin() {
 	const preloader = new Audio()
 	return function (state, emitter) {
 		emitter.on('player:set', setsource)
-		emitter.on('player:toggle', toggle)
+		emitter.on('player:play', togglePaused)
+    emitter.on('player:mute', toggleMute)
 		emitter.on('player:preload', preload)
 
 		player.autoplay = true
@@ -31,10 +32,21 @@ function plugin() {
 			preloader.load()
 		}
 
-		function toggle() {
+		function togglePaused () {
 			if (player.paused) player.play()
 			else player.pause()
 		}
+
+    function toggleMute () {
+      if (player.volume === 0) {
+        player.volume = 1
+        state.hangtime.muted = false
+      } else {
+        player.volume = 0
+        state.hangtime.muted = true
+      }
+      emitter.emit('render')
+    }
 
     // todo
     function onerror(e) {
