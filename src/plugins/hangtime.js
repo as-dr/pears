@@ -83,9 +83,9 @@ function plugin() {
 		}
 
 		function update_player() {
-			emitter.emit('player:set', state.hangtime.list[state.hangtime.position].text)
-			// preload if possible
-			try_preload()
+      emitter.emit('player:set', state.hangtime.list[state.hangtime.position].text)
+      // preload if possible
+      try_preload()
 		}
 
 		function try_preload() {
