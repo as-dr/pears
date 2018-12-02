@@ -53,8 +53,12 @@ module.exports = class FileUpload extends Component {
 		}
 	}
 
-	toggle() {
-		this.visible = !this.visible
+	toggle(visibility) {
+    if (visibility) {
+      this.visible = visibility
+    } else {
+      this.visible = !this.visible
+    }
 		this.rerender()
 	}
 

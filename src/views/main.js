@@ -11,11 +11,11 @@ module.exports = view
 
 function view(state, emit) {
 	return html`
-		<body class="flex flex-column w-100 pa5 f3 lh-copy items-center">
+		<body class="flex flex-column w-100 pa5 f3 lh-copy items-center" ondragover="${showUploader}">
 			<div class="flex flex-row w-100 mw7 justify-between">
 				<a href="#" class="link flex ph3 pv1 ba color-inherit" onclick="${back}">EXIT</a>
 				<div class="flex items-center">${state.hangtime.peers.length + 1} LISTENER${state.hangtime.peers.length != 0 ? 'S' : ''}</div>
-				<a href="#" class="link ba ph3 pv1 color-inherit" onclick="${show_uploader}">ADD SONG</a>
+				<a href="#" class="link ba ph3 pv1 color-inherit" onclick="${showUploader}">ADD SONG</a>
 			</div>
 			<div class="flex flex-column w-100 mw7 mt5">
 				${playlist.render(state.hangtime.list, state.hangtime.position)}
@@ -29,8 +29,10 @@ function view(state, emit) {
     emit('setup:delete')
 	}
 
-	function show_uploader(e) {
+	function showUploader(e) {
 		e.preventDefault()
-		fileupload.toggle()
+    if (!fileupload.visible) {
+      fileupload.toggle(true)
+    }
 	}
 }
