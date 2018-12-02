@@ -26,7 +26,7 @@ function view(state, emit) {
 
 	function back(e) {
 		e.preventDefault()
-		emit('setup:prevstep')
+    emit('setup:delete')
 	}
 
 	function show_uploader(e) {

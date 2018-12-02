@@ -20,4 +20,11 @@ function plugin(state, emitter) {
 		state.setup = false
 		emitter.emit('hangtime:loaded', archive.url)
 	})
+  emitter.on('setup:delete', function () {
+    localStorage.removeItem('local_archive')
+    localStorage.removeItem('avatar')
+    state.setup_step = 0
+    state.setup = true
+    emitter.emit('render')
+  })
 }
