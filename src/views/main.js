@@ -14,7 +14,7 @@ function view(state, emit) {
 		<body class="flex flex-column w-100 pa5 f3 lh-copy items-center">
 			<div class="flex flex-row w-100 mw7 justify-between">
 				<a href="#" class="link flex ph3 pv1 ba color-inherit" onclick="${back}">EXIT</a>
-				<div class="">${state.hangtime.peers.length + 1} LISTENER${state.hangtime.peers.length != 0 ? 'S' : ''}</div>
+				<div class="flex items-center">${state.hangtime.peers.length + 1} LISTENER${state.hangtime.peers.length != 0 ? 'S' : ''}</div>
 				<a href="#" class="link ba ph3 pv1 color-inherit" onclick="${show_uploader}">ADD SONG</a>
 			</div>
 			<div class="flex flex-column w-100 mw7 mt5">
