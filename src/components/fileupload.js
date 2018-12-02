@@ -14,7 +14,7 @@ module.exports = class FileUpload extends Component {
 		const t = this
 
 		return html`
-			<div class="flex-column justify-center items-center pa5 fixed top-0 left-0 w-100 h-100 bg-white-80 ba bw5 b--light-pink bw2 ${!this.visible ? 'dn' : 'flex'}"
+			<div class="flex-column justify-center items-center pa5 fixed top-0 left-0 w-100 h-100 bg-white-80 bw5 b--light-pink bw2 ${!this.visible ? 'dn' : 'flex'}"
 				ondragover="${drag_over}" ondragleave="${drag_leave}" ondrop="${drop}">
 				<a href="#" class="link flex ph3 pv1 ba color-inherit" onclick="${back}">BACK</a>
 				<div class="flex f-subheadline color-blue">DROP THAT SONG</div>

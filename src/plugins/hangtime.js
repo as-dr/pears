@@ -19,6 +19,15 @@ function plugin() {
       state.p2p = false
     }
 
+    window.testf = function (text) {
+      state.hangtime.list.push({
+        type: 'message',
+        text: text,
+        color: 'green'
+      })
+      emitter.emit('render')
+    }
+
 		state.hangtime = {
 			peers: [],
 			me: null,
@@ -56,7 +65,7 @@ function plugin() {
 			emitter.emit('messenger:add', value)
 			emitter.emit('render')
       // update the player if the new one is the next song
-			if (state.hangtime.position == state.hangtime.list.length - 1) {
+			if (state.hangtime.position == (state.hangtime.list.length - 1) || state.hangtime.list[state.hangtime.position].type !== 'song') {
 				emitter.emit('hangtime:updateplayer')
 			} else {
 				try_preload()
@@ -83,13 +92,17 @@ function plugin() {
 		}
 
 		function update_player() {
-      emitter.emit('player:set', state.hangtime.list[state.hangtime.position].text)
-      // preload if possible
-      try_preload()
+      if (state.hangtime.list[state.hangtime.position].type == 'song') {
+        emitter.emit('player:set', state.hangtime.list[state.hangtime.position].text)
+        // preload if possible
+        try_preload()
+      } else {
+        emitter.emit('hangtime:next')
+      }
 		}
 
 		function try_preload() {
-			if (state.hangtime.list[state.hangtime.position + 1]) {
+			if (state.hangtime.list[state.hangtime.position + 1] && state.hangtime.list[state.hangtime.position + 1].type === 'song') {
 				emitter.emit('player:preload', state.hangtime.list[state.hangtime.position + 1].text)
 			}
 		}
