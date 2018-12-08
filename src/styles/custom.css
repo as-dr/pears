@@ -11,3 +11,7 @@ input[type="color"] {
 .disabled-link {
 	pointer-events: none;
 }
+
+.deep-purple {
+	color: hsla(255, 100%, 40%, 1);
+}
