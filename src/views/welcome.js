@@ -16,13 +16,14 @@ function view(state, emit) {
 		return html`
 			<body class="w-100 min-vh-100 pa4 lh-copy">
 				<div class="flex flex-column items-center justify-around w-100 min-vh-100">
-				<div class="flex flex-column items-center justify-between w-100 mw7 ">
-				  <h2 class="f2 ttu uppercase dark-gray mv0">Soundscape</h2>
-					<h2 class="f2 gray mv0 tc">A chill space to share and listen to music with your friends.</h2>
+				<div class="flex flex-column items-start justify-between w-100 mw7 tl ">
+				  <h2 class="f3 ttu uppercase dark-gray mv0">Listen to music with far away friends.</h2>
+					<h2 class="f3 dark-gray mv0"></h2>
+					<h2 class="f4 gray mv3">Soundscape is a temporary, collaborative playlist.</h2>
 				</div>
-				<div class="flex items-center justify-between w-100 mw7 ">
-					<a href="#" class="flex f2 color-inherit link bb bw1" onclick="${fork}">CREATE YOUR SPACE</a>
-					<a href="#" class="flex f2 color-inherit link bb bw1" onclick="${next}">JOIN A SPACE</a>
+				<div class="flex flex-column items-start justify-start w-100 mw7 ">
+					<a href="#" class="flex f3 deep-purple link mv3 " onclick="${fork}">Create your space.</a>
+					<a href="#" class="flex f3 deep-purple link mv3" onclick="${next}">Join a friend's space.</a>
 
 				</div>
 
@@ -47,19 +48,20 @@ function view(state, emit) {
 	function step1() {
 		return html`
 			<body class="flex self-center w-100 min-vh-100 f3 lh-copy pa5-ns pa3">
-				<div class="flex flex-column w-100 h-100 mw8 justify-between">
+				<div class="flex flex-row w-100 h-100 mw8 justify-between">
 
-					<div class="flex flex-row w-100" style="justify-content: space-between;">
-					<a href="#" class="flex self-start color-inherit" onclick="${back}">BACK</a>
-					<h3 class="flex self-end dib mv0">STEP 1</h3>
+					<div class="flex flex-column items-center w-100 mw5 justify-center">
+					<a href="#" class="link flex self-start color-inherit" onclick="${back}">BACK</a>
 					</div>
 
-					<div class="flex w-100 justify-center align-center">
-						<p>First, select a folder on your computer to stream from.</p>
-					</div>
-					<div class="flex flex-row w-100 justify-between items-center align-center">
-						${as.render(emit)}
-						<a href="#" class="link flex color-inherit ph3 pv2 ba ttu uppercase ${as.archive != null ? 'o-100' : 'o-10 disabled-link'}" onclick="${next}">Next</a>
+					<div class="flex flex-column w-100 justify-center align-center">
+						<p class="mv0 deep-purple">1.</p>
+						<p class="mv0 deep-purple">SELECT A FOLDER</p>
+						<div class="flex flex-row w-100">
+						<p>	${as.render(emit)} on your computer to stream to and from.</p>
+						</div>
+
+						<a href="#" class="link flex mw4 justify-center deep-purple f3 ph2 pv1 ba ttu uppercase ${as.archive != null ? 'o-100' : 'o-10 disabled-link'}" onclick="${next}">Next</a>
 					</div>
 				</div>
 			</body>
@@ -71,20 +73,22 @@ function view(state, emit) {
 	function step2() {
 		return html`
 		<body class="flex self-center w-100 min-vh-100 f3 lh-copy pa5-ns pa3">
-			<div class="flex flex-column w-100 h-100 mw8 justify-between">
+			<div class="flex flex-row w-100 h-100 mw8 justify-between">
 
-				<div class="flex flex-row w-100" style="justify-content: space-between;">
-				<a href="#" class="flex self-start color-inherit" onclick="${back}">BACK</a>
-				<h3 class="flex self-end dib mv0">STEP 2</h3>
-				</div>
+			<div class="flex flex-column items-center w-100 mw5 justify-center">
+			<a href="#" class="link flex self-start color-inherit" onclick="${back}">BACK</a>
+			</div>
 
-				<div class="flex flex-column w-100 items-center align-center">
-					<input id="avatar_selector" class="flex mv3 bn" style="outline:0;" type="color" value="#2659ff">
-					<p>This is your avatar.</p><p> Click to give it a color, then hit 'Finish'.</p>
-				</div>
-				<div class="flex flex-row w-100 justify-between items-center align-center">
+				<div class="flex flex-column w-100 justify-center align-center">
+
+					<p class="mv0 deep-purple">2.</p>
+					<div class="flex flex-row w-100 items-center">
+					<p class="mv0 deep-purple">SELECT AN AVATAR <span class="f2">↝</span></p>
+					<input id="avatar_selector" class="flex ml3 bn" style="outline:0;" type="color" value="#2659ff">
+					</div>
+					<p>Your avatar is a color that appears next to your song selections.</p>
 					${as.render(emit)}
-					<a href="#" class="link flex color-inherit ph3 pv2 ba ttu uppercase ${as.archive != null ? 'o-100' : 'o-10 disabled-link'}" onclick="${finish}">Finish</a>
+					<a href="#" class="link flex deep-purple ttu uppercase ${as.archive != null ? 'o-100' : 'o-10 disabled-link'}" onclick="${finish}">Finish</a>
 				</div>
 			</div>
 		</body>
