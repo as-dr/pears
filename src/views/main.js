@@ -21,7 +21,7 @@ function view(state, emit) {
 				<a href="#" class="link f3 deep-purple mv2  br1">+ Invite Friends</a>
 				</div>
         <a href="#" class="link f3 deep-purple " onclick="${toggleMute}">${state.hangtime.muted ? 'Unmute' : 'Mute'}</a>
-        <a href="#" class="link f3 deep-purple" onclick="${showUploader}">+ Add Song</a>
+        <a href="#" class="link f3 deep-purple" onclick="${openFileDialog}">+ Add Song</a>
 			<div class="flex flex-column w-100 mw7 mt5">
 				${playlist.render(state.hangtime.list, state.hangtime.position)}
 			</div>
@@ -41,6 +41,11 @@ function view(state, emit) {
       fileupload.toggle(true)
     }
 	}
+
+  function openFileDialog (e) {
+    showUploader(e)
+    fileupload.openDialog()
+  }
 
   function toggleMute(e) {
     e.preventDefault()

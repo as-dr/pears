@@ -13,6 +13,7 @@ app.use((state, emitter) => {
 		emitter.emit('render')
 	})
 })
+app.use(require('choo-shortemit'))
 app.use(require('./plugins/setup'))
 app.use(require('./plugins/hangtime')())
 app.use(require('./plugins/messenger')())

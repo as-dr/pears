@@ -19,6 +19,7 @@
   "homepage": "https://github.com/as-dr/noname#readme",
   "dependencies": {
     "choo": "^6.13.0",
+    "choo-shortemit": "^0.1.0",
     "nanocomponent": "^6.5.2",
     "nanohtml": "^1.2.4",
     "sheetify": "^7.3.3",
