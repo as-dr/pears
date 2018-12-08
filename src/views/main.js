@@ -26,7 +26,7 @@ function view(state, emit) {
 				${playlist.render(state.hangtime.list, state.hangtime.position)}
 			</div>
 		</div>
-			${fileupload.render(emit)}
+			${fileupload.render()}
 		</body>
 	`
 
@@ -43,7 +43,6 @@ function view(state, emit) {
 	}
 
   function openFileDialog (e) {
-    showUploader(e)
     fileupload.openDialog()
   }
 

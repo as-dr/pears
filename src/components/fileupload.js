@@ -10,6 +10,7 @@ module.exports = class FileUpload extends Component {
 
 		this.visible = false
     this.fileinput = null
+    this.closeTimeout = null
 	}
 
 	createElement() {
@@ -18,9 +19,8 @@ module.exports = class FileUpload extends Component {
     this.fileinput = html`<input type="file" onchange="${onchange}" class="dn">`
 
 		return html`
-			<div class="flex-column justify-center items-center pa5 fixed top-0 left-0 w-100 h-100 bg-white-80 bw5 b--light-pink bw2 ${!this.visible ? 'dn' : 'flex'}"
+			<div class="flex-column justify-center items-center pa5 fixed top-0 left-0 w-100 h-100 bg-white-80 bw5 bw2 ${!this.visible ? 'dn' : 'flex'}"
 				ondragover="${drag_over}" ondragleave="${drag_leave}" ondrop="${drop}">
-				<a href="#" class="link flex ph3 pv1 ba color-inherit" onclick="${back}">BACK</a>
 				<div class="flex f-subheadline color-blue">DROP THAT SONG</div>
         ${this.fileinput}
 			</div>
@@ -28,13 +28,16 @@ module.exports = class FileUpload extends Component {
 
 		function drag_over(e) {
 			e.preventDefault()
-			this.classList.add('ba')
+      if (t.closeTimeout) clearTimeout(t.closeTimeout)
 		}
 
 		function drag_leave(e) {
 			e.preventDefault()
-			this.classList.remove('ba')
-		}
+      if (t.closeTimeout) clearTimeout(t.closeTimeout)
+      t.closeTimeout = setTimeout(function() {
+        t.toggle(false)
+      }, 500)
+    }
 
 		function drop(e) {
 			e.preventDefault()
@@ -48,11 +51,6 @@ module.exports = class FileUpload extends Component {
     function onchange(e) {
       t.uploadFile(this.files[0])
     }
-
-		function back(e) {
-			e.preventDefault()
-			t.toggle()
-		}
 	}
 
   uploadFile(file) {
@@ -79,7 +77,7 @@ module.exports = class FileUpload extends Component {
 		this.rerender()
 	}
 
-	update(emit) {
+	update() {
 		return true
 	}
 }
