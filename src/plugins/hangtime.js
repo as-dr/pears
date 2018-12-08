@@ -30,7 +30,7 @@ function plugin() {
 
 		state.hangtime = {
 			peers: [],
-			me: null,
+			me: {},
 			list: [],
 			position: 0,
 			time: 0,
@@ -51,6 +51,7 @@ function plugin() {
 			if (state.p2p && !state.setup) {
 				archive = new DatArchive(local_archive)
 				const color = localStorage.getItem('avatar') || 'salmon'
+        state.hangtime.me.color = color
 				emitter.emit('messenger:newpeer', local_archive, color)
 			} else if (state.p2p) {
 				emitter.emit('messenger:clearpeer')
