@@ -86,7 +86,7 @@ function plugin() {
 				emitter.emit('render')
         // delete the previous song from your archive
         var prevFile = state.hangtime.list[state.hangtime.position - 1].text
-        if (prevFile.indexOf(archive.url) !== -1) {
+        if (prevFile.indexOf(archive.url) !== -1 && !inList(prevFile)) {
           prevFile = prevFile.replace(archive.url, '')
           unlink(prevFile)
         }
@@ -130,7 +130,13 @@ function plugin() {
           return false
         }
       }
+      return false
+    }
 
+    function inList(file) {
+      for (var i = 0; i < state.hangtime.list.length; i++) {
+        if (state.hangtime.list[i].text === file) return true
+      }
       return false
     }
 	}
