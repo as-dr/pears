@@ -15,3 +15,13 @@ input[type="color"] {
 .deep-purple {
 	color: hsla(255, 100%, 40%, 1);
 }
+
+.mini-links {
+	border-color: #ccc;
+	transition: 0.35s ease-in-out;
+}
+
+.mini-links:hover {
+	border-color: hsla(255, 100%, 40%, 1);
+	transition: 0.25s ease-in-out;
+}
