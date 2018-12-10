@@ -79,7 +79,7 @@ module.exports = class Playlist extends Component {
 
 		function avatar(color) {
 			return html`
-				<div class="flex mr3" style="width: 16px; height: 16px; border-radius: 100px; background: ${color};"></div>
+				<div class="flex mr3" style="width: 12px; height: 12px; border-radius: 100px; background: ${color};"></div>
 			`
 		}
 	}
