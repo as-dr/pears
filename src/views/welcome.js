@@ -63,11 +63,11 @@ function view(state, emit) {
 						<ul class="list pl0 dark-gray">
 							<ul class="list pl0 mv4">
 							<li class="f3 deep-purple">Code</li>
-							<li class="f4"><a class="link dark-gray" href="https://rsms.me/inter/" target="_blank">Hunor Karamán <span class="deep-purple">↗</span> </a></li>
+							<li class="f4"><a class="link dark-gray" href="https://hex22.org/" target="_blank">Hunor Karamán <span class="deep-purple">↗</span> </a></li>
 							</ul>
 							<ul class="list pl0 mv4">
 							<li class="f3 deep-purple">Design</li>
-							<li class="f4"><a class="link dark-gray" href="https://rsms.me/inter/" target="_blank">Alex Singh<span class="deep-purple">↗</span> </a></li>
+							<li class="f4"><a class="link dark-gray" href="https://www.alexsingh.com" target="_blank">Alex Singh<span class="deep-purple">↗</span> </a></li>
 							</ul>
 							<ul class="list pl0 mv4">
 							<li class="f3 deep-purple">Type</li>
