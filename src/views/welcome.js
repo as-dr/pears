@@ -21,9 +21,13 @@ function view(state, emit) {
 						<h2 class="f3 dark-gray mv0"></h2>
 						<h2 class="f4 gray mv3">Soundscape is a temporary, collaborative playlist.</h2>
 					</div>
-					<div class="flex flex-column items-start justify-start w-100 mw7 ">
-						<a href="#" class="flex f3 deep-purple link mv3 " onclick="${fork}">Create your space.</a>
-						<a href="#" class="flex f3 deep-purple link mv3" onclick="${next}">Join a friend's space.</a>
+					<div class="flex flex-column items-start justify-center w-100 mw7 ">
+						<a href="#" class="link-main flex f3 deep-purple link mv3 " onclick="${fork}">
+						<span class="flex ico-link mr3 f5 self-center">➤</span> Create your space.
+						</a>
+						<a href="#" class="link-main flex f3 deep-purple link mv3" onclick="${next}">
+						<span class="flex ico-link mr3 f5 self-center">➤</span> Join a friend's space.
+						</a>
 					</div>
 				</div>
 				<div class="flex flex-column items-center justify-around w-100 min-vh-100">

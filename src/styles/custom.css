@@ -25,3 +25,19 @@ input[type="color"] {
 	border-color: hsla(255, 100%, 40%, 1);
 	transition: 0.25s ease-in-out;
 }
+
+.ico-link {
+	animation: bounce-right 1s linear infinite;
+	animation-play-state: paused;
+}
+
+.link-main:hover > .ico-link {
+	animation: bounce-right 0.8s linear infinite;
+	animation-play-state: running;
+}
+
+@keyframes bounce-right {
+	0% {transform:translateX(0%);}
+	50% {transform:translateX(30%);}
+	100% {transform:translateX(0%);}
+}
