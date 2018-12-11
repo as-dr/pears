@@ -23,7 +23,7 @@ module.exports = class Playlist extends Component {
                           .filter((_, id) => (id - t.current_index >= -LAST_SONGS))
 		return html`
 			<div class="w-100">
-				${filteredList.map(renderItem)}
+				${!!filteredList.length ? filteredList.map(renderItem) : empty()}
 			</div>
 		`
 
@@ -62,6 +62,14 @@ module.exports = class Playlist extends Component {
 				<div class="flex mr3" style="width: 12px; height: 12px; border-radius: 100px; background: ${color};"></div>
 			`
 		}
+
+    function empty () {
+      return html`
+        <div class="o-30 mv2">
+          To add a song, simply drag it in here, or press the "+ Add song" button to search your computer.
+        </div>
+      `
+    }
 	}
 
 	addSong(file, color) {

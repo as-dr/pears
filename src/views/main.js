@@ -17,18 +17,13 @@ function view(state, emit) {
 			</div>
 			<div class="flex flex-column justify-start items-start w-100 h-100">
 				<div class="flex flex-column items-start mv5">
-				${state.hangtime.peers.length + 1} LISTENER${state.hangtime.peers.length != 0 ? 'S' : ''}
-				<a href="#" class="link f3 deep-purple mv2  br1">+ Invite Friends</a>
+				  ${state.hangtime.peers.length + 1} LISTENER${state.hangtime.peers.length != 0 ? 'S' : ''}
+			    <a href="#" class="link f3 deep-purple mv2  br1">+ Invite Friends</a>
 				</div>
 				<ul class="list flex flex-row w-100 pl0 f4 mv3">
-
-				<li class="ml0 mr4">
-				<a href="#" class="link mini-links deep-purple  bb pb1 bw1" onclick="${toggleMute}">${state.hangtime.muted ? 'Unmute' : 'Mute'}</a>
-				</li>
-
-				<li class="mr4">
-				<a href="#" class="link mini-links deep-purple bb pb1 bw1" onclick="${toggleMute}">Hide Played Songs</a>
-				</li>
+				  <li class="ml0 mr4">
+				    <a href="#" class="link mini-links deep-purple  bb pb1 bw1" onclick="${toggleMute}">${state.hangtime.muted ? 'Unmute' : 'Mute'}</a>
+				  </li>
 				</ul>
 			<div class="flex flex-column w-100 mw7 mt5">
 			<a href="#" class="link f3 deep-purple" onclick="${openFileDialog}">+ Add Song</a>
