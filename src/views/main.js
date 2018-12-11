@@ -10,6 +10,7 @@ const fileupload = new FileUpload()
 module.exports = view
 
 function view(state, emit) {
+  var waiting = !state.hangtime.playing && (state.hangtime.position < state.hangtime.list.length - 1)
 	return html`
 		<body class="flex flex-row w-100 pv4 ph3 f3 lh-copy items-center" ondragover="${showUploader}">
 			<div class="flex flex-column w-100 mw5 items-center justify-center">
@@ -27,7 +28,7 @@ function view(state, emit) {
 				</ul>
 			<div class="flex flex-column w-100 mw7 mt5">
 			<a href="#" class="link f3 deep-purple" onclick="${openFileDialog}">+ Add Song</a>
-				${playlist.render(state.hangtime.list, state.hangtime.position)}
+				${playlist.render(state.hangtime.list, state.hangtime.position, waiting)}
 			</div>
 		</div>
 			${fileupload.render()}

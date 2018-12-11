@@ -11,6 +11,11 @@ function plugin() {
     emitter.on('player:mute', toggleMute)
 		emitter.on('player:preload', preload)
 
+    // end of song magic
+    window.magic = function () {
+      player.currentTime = player.duration - 10
+    }
+
 		player.autoplay = true
 		player.preload = 'auto'
 		player.addEventListener('ended', onended)
@@ -56,12 +61,14 @@ function plugin() {
     }
 
 		function onended() {
+      state.hangtime.playing = false
 			state.hangtime.time = 0
 			emitter.emit('messenger:ended')
 			emitter.emit('hangtime:next')
 		}
 
 		function onupdate() {
+      state.hangtime.playing = true
 			state.hangtime.time = player.currentTime
 		}
 	}

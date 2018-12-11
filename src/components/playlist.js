@@ -14,7 +14,7 @@ module.exports = class Playlist extends Component {
 		this.current_index = 0 // don't forget to skip messages
 	}
 
-	createElement(list, index) {
+	createElement(list, index, waiting) {
 		const t = this
 		this.list = list
 		this.current_index = index
@@ -43,6 +43,7 @@ module.exports = class Playlist extends Component {
 					${avatar(item.color)}
 					<span class="ttu ${state !== 0 ? (state < 0) ? 'strike o-30' : 'o-30' : ''}">
             ${songtitle(item.text)}
+            ${(waiting && state === 0) ? html`<span class="o-30 blink ml2">― Waiting for the others</span>` : null}
           </span>
 				</div>
 			`

@@ -41,3 +41,8 @@ input[type="color"] {
 	50% {transform:translateX(30%);}
 	100% {transform:translateX(0%);}
 }
+
+.blink { animation: blinker 2s linear infinite; }
+@keyframes blinker {
+  50% { opacity: 0; }
+}
