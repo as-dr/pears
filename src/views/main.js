@@ -27,7 +27,7 @@ function view(state, emit) {
 				</li>
 
 				<li class="mr4">
-				<a href="#" class="link mini-links deep-purple bb pb1 bw1" onclick="${toggleMute}">Hide Played Songs</a>
+				<a href="#" class="link mini-links deep-purple bb pb1 bw1" onclick="${toggleMute}">Skip</a>
 				</li>
 				</ul>
 			<div class="flex flex-column w-100 mw7 mt5">
