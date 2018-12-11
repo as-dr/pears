@@ -10,6 +10,7 @@ const fileupload = new FileUpload()
 module.exports = view
 
 function view(state, emit) {
+  var waiting = !state.hangtime.playing && (state.hangtime.position < state.hangtime.list.length - 1)
 	return html`
 		<body class="flex flex-row w-100 pv4 ph3 f3 lh-copy items-center" ondragover="${showUploader}">
 			<div class="flex flex-column w-100 mw5 items-center justify-center">
@@ -17,22 +18,17 @@ function view(state, emit) {
 			</div>
 			<div class="flex flex-column justify-start items-start w-100 h-100">
 				<div class="flex flex-column items-start mv5">
-				${state.hangtime.peers.length + 1} LISTENER${state.hangtime.peers.length != 0 ? 'S' : ''}
-				<a href="#" class="link f3 deep-purple mv2  br1">+ Invite Friends</a>
+				  ${state.hangtime.peers.length + 1} LISTENER${state.hangtime.peers.length != 0 ? 'S' : ''}
+			    <a href="#" class="link f3 deep-purple mv2  br1">+ Invite Friends</a>
 				</div>
 				<ul class="list flex flex-row w-100 pl0 f4 mv3">
-
-				<li class="ml0 mr4">
-				<a href="#" class="link mini-links deep-purple  bb pb1 bw1" onclick="${toggleMute}">${state.hangtime.muted ? 'Unmute' : 'Mute'}</a>
-				</li>
-
-				<li class="mr4">
-				<a href="#" class="link mini-links deep-purple bb pb1 bw1" onclick="${toggleMute}">Skip</a>
-				</li>
+				  <li class="ml0 mr4">
+				    <a href="#" class="link mini-links deep-purple  bb pb1 bw1" onclick="${toggleMute}">${state.hangtime.muted ? 'Unmute' : 'Mute'}</a>
+				  </li>
 				</ul>
 			<div class="flex flex-column w-100 mw7 mt5">
 			<a href="#" class="link f3 deep-purple" onclick="${openFileDialog}">+ Add Song</a>
-				${playlist.render(state.hangtime.list, state.hangtime.position)}
+				${playlist.render(state.hangtime.list, state.hangtime.position, waiting)}
 			</div>
 		</div>
 			${fileupload.render()}

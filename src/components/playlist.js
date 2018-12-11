@@ -1,34 +1,10 @@
 // playlist component
 
-/*
-
-list = [
-{
-	"type": "song",
-	"text": "BOWIE - ASHES TO ASHES",
-	"color": 'salmon'
-},
-{
-	"type": "song",
-	"text": "TOOL - THE POT",
-	"color": 'pink'
-},
-{
-	"type": "message",
-	"text": "A NEW LISTENER JOINED",
-	"color": 'red'
-},
-{
-	"type": "song",
-	"text": "Pink Floyd - Hey You.mp3",
-	"color": 'red'
-}
-]
-
-*/
-
 const Component = require('nanocomponent')
 const html = require('nanohtml')
+
+// how many played songs do we want to show?
+const LAST_SONGS = 2
 
 module.exports = class Playlist extends Component {
 	constructor() {
@@ -38,13 +14,16 @@ module.exports = class Playlist extends Component {
 		this.current_index = 0 // don't forget to skip messages
 	}
 
-	createElement(list, index) {
+	createElement(list, index, waiting) {
 		const t = this
 		this.list = list
 		this.current_index = index
+
+    var filteredList = this.list.slice(0)
+                          .filter((_, id) => (id - t.current_index >= -LAST_SONGS))
 		return html`
 			<div class="w-100">
-				${this.list.slice(0).reverse().slice(0, 12).map(renderItem)}
+				${!!filteredList.length ? filteredList.map(renderItem) : empty()}
 			</div>
 		`
 
@@ -58,12 +37,14 @@ module.exports = class Playlist extends Component {
 		}
 
 		function renderSong(item, id) {
-			var state = (t.list.length - id - 1) - t.current_index // 0 = current song, < 0 = played, > = in queue
-
+			var state = (id + t.list.length - filteredList.length) - t.current_index // 0 = current song, > 0 = played, < in queue
 			return html`
 				<div class="flex flex-row items-center w-100 mv2">
 					${avatar(item.color)}
-					<span class="ttu ${state != 0 ? (state < 0) ? 'strike o-30' : 'o-30' : ''}">${songtitle(item.text)}</span>
+					<span class="ttu ${state !== 0 ? (state < 0) ? 'strike o-30' : 'o-30' : ''}">
+            ${songtitle(item.text)}
+            ${(waiting && state === 0) ? html`<span class="o-30 blink ml2">― Waiting for the others</span>` : null}
+          </span>
 				</div>
 			`
 		}
@@ -82,6 +63,14 @@ module.exports = class Playlist extends Component {
 				<div class="flex mr3" style="width: 12px; height: 12px; border-radius: 100px; background: ${color};"></div>
 			`
 		}
+
+    function empty () {
+      return html`
+        <div class="o-30 mv2">
+          To add a song, simply drag it in here, or press the "+ Add song" button to search your computer.
+        </div>
+      `
+    }
 	}
 
 	addSong(file, color) {

@@ -19,15 +19,6 @@ function plugin() {
       state.p2p = false
     }
 
-    window.testf = function (text) {
-      state.hangtime.list.push({
-        type: 'message',
-        text: text,
-        color: 'green'
-      })
-      emitter.emit('render')
-    }
-
 		state.hangtime = {
 			peers: [],
 			me: {},
@@ -36,7 +27,8 @@ function plugin() {
 			time: 0,
 			finished_peers: 0,
       responsesReceived: 0,
-      muted: false
+      muted: false,
+      playing: false
 		}
 
 		emitter.on(state.events.DOMCONTENTLOADED, loaded)
@@ -74,6 +66,9 @@ function plugin() {
 			}
 		}
 
+    // next song magic
+    window.next = next
+
 		function next() {
       // if it's not the end of the list
 			if (state.hangtime.finished_peers >= state.hangtime.peers.length - 1) {
@@ -83,7 +78,6 @@ function plugin() {
 				if (state.hangtime.position <= state.hangtime.list.length - 1) {
 					emitter.emit('hangtime:updateplayer')
 				}
-				emitter.emit('render')
         // delete the previous song from your archive
         var prevFile = state.hangtime.list[state.hangtime.position - 1].text
         if (prevFile.indexOf(archive.url) !== -1 && !inList(prevFile)) {
@@ -91,6 +85,7 @@ function plugin() {
           unlink(prevFile)
         }
 			}
+      emitter.emit('render')
 		}
 
 		function update_player() {
