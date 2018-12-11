@@ -22,7 +22,7 @@ module.exports = class Playlist extends Component {
     var filteredList = this.list.slice(0)
                           .filter((_, id) => (id - t.current_index >= -LAST_SONGS))
 		return html`
-			<div class="w-100">
+			<div class="flex flex-column w-100">
 				${!!filteredList.length ? filteredList.map(renderItem) : empty()}
 			</div>
 		`
@@ -39,7 +39,7 @@ module.exports = class Playlist extends Component {
 		function renderSong(item, id) {
 			var state = (id + t.list.length - filteredList.length) - t.current_index // 0 = current song, > 0 = played, < in queue
 			return html`
-				<div class="flex flex-row items-center w-100 mv2">
+				<div class="flex flex-row items-center w-100 mv1">
 					${avatar(item.color)}
 					<span class="ttu ${state !== 0 ? (state < 0) ? 'strike o-30' : 'o-30' : ''}">
             ${songtitle(item.text)}
@@ -51,7 +51,7 @@ module.exports = class Playlist extends Component {
 
 		function renderMessage(item) {
 			return html`
-				<div class="flex flex-row items-center w-100 mv2">
+				<div class="flex flex-row items-center w-100 mv1">
 					${avatar(item.color)}
 					<span class="ttu o-30" style="color: ${item.color};">${item.text}</span>
 				</div>

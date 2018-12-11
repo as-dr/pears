@@ -46,3 +46,7 @@ input[type="color"] {
 @keyframes blinker {
   50% { opacity: 0; }
 }
+
+.h-auto {
+	height: auto;
+}
