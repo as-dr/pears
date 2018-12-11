@@ -1,34 +1,10 @@
 // playlist component
 
-/*
-
-list = [
-{
-	"type": "song",
-	"text": "BOWIE - ASHES TO ASHES",
-	"color": 'salmon'
-},
-{
-	"type": "song",
-	"text": "TOOL - THE POT",
-	"color": 'pink'
-},
-{
-	"type": "message",
-	"text": "A NEW LISTENER JOINED",
-	"color": 'red'
-},
-{
-	"type": "song",
-	"text": "Pink Floyd - Hey You.mp3",
-	"color": 'red'
-}
-]
-
-*/
-
 const Component = require('nanocomponent')
 const html = require('nanohtml')
+
+// how many played songs do we want to show?
+const LAST_SONGS = 2
 
 module.exports = class Playlist extends Component {
 	constructor() {
@@ -42,9 +18,12 @@ module.exports = class Playlist extends Component {
 		const t = this
 		this.list = list
 		this.current_index = index
+
+    var filteredList = this.list.slice(0)
+                          .filter((_, id) => (id - t.current_index >= -LAST_SONGS))
 		return html`
 			<div class="w-100">
-				${this.list.slice(0).reverse().slice(0, 12).map(renderItem)}
+				${filteredList.map(renderItem)}
 			</div>
 		`
 
@@ -58,12 +37,13 @@ module.exports = class Playlist extends Component {
 		}
 
 		function renderSong(item, id) {
-			var state = (t.list.length - id - 1) - t.current_index // 0 = current song, < 0 = played, > = in queue
-
+			var state = (id + t.list.length - filteredList.length) - t.current_index // 0 = current song, > 0 = played, < in queue
 			return html`
 				<div class="flex flex-row items-center w-100 mv2">
 					${avatar(item.color)}
-					<span class="ttu ${state != 0 ? (state < 0) ? 'strike o-30' : 'o-30' : ''}">${songtitle(item.text)}</span>
+					<span class="ttu ${state !== 0 ? (state < 0) ? 'strike o-30' : 'o-30' : ''}">
+            ${songtitle(item.text)}
+          </span>
 				</div>
 			`
 		}

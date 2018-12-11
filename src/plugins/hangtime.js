@@ -74,6 +74,8 @@ function plugin() {
 			}
 		}
 
+    window.next = next
+
 		function next() {
       // if it's not the end of the list
 			if (state.hangtime.finished_peers >= state.hangtime.peers.length - 1) {
