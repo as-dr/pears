@@ -44,8 +44,12 @@ module.exports = class FileUpload extends Component {
 
 			var file = e.dataTransfer.files[0]
 
-      t.uploadFile(file);
-			this.classList.remove('ba')
+      if (file) {
+        t.uploadFile(file)
+      } else {
+        t.visible = false
+        t.rerender()
+      }
 		}
 
     function onchange(e) {
