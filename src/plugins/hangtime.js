@@ -4,18 +4,24 @@ module.exports = plugin
 
 function plugin() {
 	return function (state, emitter) {
+    state.loaded = false
+
 		var archive = null
+    var space = null
 
 		// check if data exists in localstorage
 		var local_archive = localStorage.getItem('local_archive')
 
 		state.setup = !local_archive
-    if (isDat()) {
+    try {
+      space = new DatArchive(window.location.href)
       // check if datPeers is available
       if (window.experimental && window.experimental.datPeers) {
-        state.p2p = true;
+        state.p2p = true
+      } else {
+        state.p2p = false
       }
-    } else {
+    } catch (e) {
       state.p2p = false
     }
 
@@ -23,6 +29,7 @@ function plugin() {
 			peers: [],
 			me: {},
 			list: [],
+      space: null,
 			position: 0,
 			time: 0,
 			finished_peers: 0,
@@ -38,12 +45,17 @@ function plugin() {
 		emitter.on('hangtime:next', next)
 		emitter.on('hangtime:updateplayer', update_player)
 
-		function loaded(dat_url) {
+		async function loaded(dat_url) {
+      state.hangtime.space = await space.getInfo()
+      state.loaded = true
+
 			local_archive = local_archive || dat_url
 			if (state.p2p && !state.setup) {
 				archive = new DatArchive(local_archive)
+
 				const color = localStorage.getItem('avatar') || 'salmon'
         state.hangtime.me.color = color
+
 				emitter.emit('messenger:newpeer', local_archive, color)
 			} else if (state.p2p) {
 				emitter.emit('messenger:clearpeer')
@@ -112,20 +124,6 @@ function plugin() {
 
     function unlink(filename) {
       archive.unlink(filename)
-    }
-
-    function isDat() {
-      // check if datarchive exists
-      if (typeof DatArchive !== 'undefined') {
-        // check if url is dat
-        try {
-          new DatArchive(window.location.href)
-          return true
-        } catch (e) {
-          return false
-        }
-      }
-      return false
     }
 
     function inList(file) {
