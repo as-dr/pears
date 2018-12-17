@@ -115,7 +115,7 @@ function view(state, emit) {
 						<p>	${as.render(emit)} on your computer to stream to and from.</p>
 						</div>
 
-						<a href="#" class="link flex mw4 justify-center deep-purple f3 ph2 pv1 ba ttu uppercase ${as.archive != null ? 'o-100' : 'o-10 disabled-link'}" onclick="${next}">Next</a>
+						<a href="#" class="link flex mw4 justify-center deep-purple f3 ph2 pv1 ba ttu uppercase ${as.archive != null ? 'o-100' : 'o-10 link-disabled'}" onclick="${next}">Next</a>
 					</div>
 				</div>
 			</body>
@@ -142,7 +142,7 @@ function view(state, emit) {
 					</div>
 					<p>Your avatar is a color that appears next to your song selections.</p>
 					${as.render(emit)}
-					<a href="#" class="link flex deep-purple ttu uppercase ${as.archive != null ? 'o-100' : 'o-10 disabled-link'}" onclick="${finish}">Finish</a>
+					<a href="#" class="link flex deep-purple ttu uppercase ${as.archive != null ? 'o-100' : 'o-10 link-disabled'}" onclick="${finish}">Finish</a>
 				</div>
 			</div>
 		</body>

@@ -32,7 +32,7 @@ function view(state, emit) {
 			</div>
 			</div>
 
-			<a href="#" class="link flex pv4 gray disabled-link" onclick="${back}">Settings</a>
+			<a href="#" class="link flex pv4 gray link-disabled" onclick="${back}">Settings</a>
 		</div>
 
 			${fileupload.render()}
