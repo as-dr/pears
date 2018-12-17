@@ -34,30 +34,30 @@ function view(state, emit) {
 				<div class="flex flex-column items-start justify-between w-100 mw7 tl ">
 				<h2 class="f3 ttu uppercase dark-gray mv0">Help</h2>
 				<h2 class="f3 gray mv0">Select a question to see the answer</h2>
-					<ul class="list pl0 dark-gray">
+					<ul class="list pl0 dark-gray lh-copy">
 						<ul class="list pl0 mv4">
 						<li class="f3 deep-purple pointer">What is this?</li>
-						<li class="dn f4">Answer</li>
+						<li class="dn f4 mb5">Listen to a music with far away friends. Soundscape is a temporary, collaborative playlist you create with your friends. </li>
 						</ul>
 						<ul class="list pl0 mv4">
 						<li class="f3 deep-purple pointer">What's DAT?</li>
-						<li class="dn f4">Answer</li>
+						<li class="dn f4 mb5">DAT is like HTTP. The difference is that DAT is designed for peer-to-peer connections. That means when you use Soundscape, people connect directly to each others computers. With HTTP, people connect to a central company computer, instead, like when you listen to music on Spotify.</li>
 						</ul>
 						<ul class="list pl0 mv4">
 						<li class="f3 deep-purple pointer">Why do I need to use Beaker Browser?</li>
-						<li class="dn f4">Answer</li>
+						<li class="dn f4 mb5">Beaker is the best way to access DAT links. DAT isn't currently supported by most major browsers.</li>
 						</ul>
 						<ul class="list pl0 mv4">
 						<li class="f3 deep-purple pointer">Can I add streaming links?</li>
-						<li class="dn f4">Answer</li>
+						<li class="dn f4 mb5">Not yet. This version only lets you add MP3s that you have on your computer. Remember those?</li>
 						</ul>
 						<ul class="list pl0 mv4">
 						<li class="f3 deep-purple pointer">Can I set admin permissions?</li>
-						<li class="dn f4">Answer</li>
+						<li class="dn f4 mb5">They were left out intentionally as a design choice. When everyone can manipulate the space, it limits how many people can listen before disagreements or greifing emerges. We're presently more interested in encouraging the creation of small, trusted spaces people close friends.</li>
 						</ul>
 						<ul class="list pl0 mv4">
 						<li class="f3 deep-purple pointer">Why isn't my playlist permanent?</li>
-						<li class="dn f4">Answer</li>
+						<li class="dn f4 mb5">Songs added to a playlist are deleted from your hard drive after they're played. This is a small nod of respect to the many artists whose music make our days.</li>
 						</ul>
 					</ul>
 					</div>
