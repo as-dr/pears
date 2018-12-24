@@ -39,7 +39,8 @@ module.exports = class Playlist extends Component {
 		function renderSong(item, id) {
 			var state = (id + t.list.length - filteredList.length) - t.current_index // 0 = current song, > 0 = played, < in queue
 			return html`
-				<div class="flex flex-row items-center w-100 mv1">
+				<div class="relative flex flex-row items-center w-100 mv1">
+					<div class="player-strikethrough absolute z-999" style="top:20px; left: 20px; height: 4px;"></div>
 					${avatar(item.color)}
 					<span class="ttu ${state !== 0 ? (state < 0) ? 'strike o-30' : 'o-30' : ''}">
             ${songtitle(item.text)}
