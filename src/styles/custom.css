@@ -8,14 +8,6 @@ input[type="color"] {
 	cursor: pointer;
 }
 
-.player-strikethrough {
-	position: absolute
-	top: 20px;
-	left: 20px;
-	height: 4px;
-	display: flex;
-	z-index:999;
-}
 
 .link-disabled {
 	pointer-events: none;
