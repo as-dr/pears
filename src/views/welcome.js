@@ -16,63 +16,87 @@ function view(state, emit) {
 
 	function step0() {
 		return html`
-			<body class="w-100 min-vh-100 pa4 lh-copy">
-				<div class="flex flex-column items-center justify-around w-100 min-vh-100">
-					<div class="flex flex-column items-start justify-between w-100 mw7 tl ">
-					  <h2 class="f3 ttu uppercase dark-gray mv0">Listen to music with far away friends.</h2>
-						<h2 class="f3 dark-gray mv0"></h2>
-						<h2 class="f4 gray mv3">Soundscape is a temporary, collaborative playlist.</h2>
-					</div>
-					<div class="flex flex-column items-start justify-center w-100 mw7 ">
-						<a href="#" class="link-main flex f3 deep-purple link mv3 " onclick="${fork}">
-						<span class="flex ico-link mr3 f5 self-center">➤</span> Create your space.
-						</a>
-						<a href="#" class="link-main flex f3 deep-purple link mv3" onclick="${next}">
-						<span class="flex ico-link mr3 f5 self-center">➤</span> Join a friend's space.
-						</a>
-					</div>
-				</div>
+      <body class="w-100 min-vh-100 pa4 lh-copy">
+				${state.hangtime.space.isOwner ? mainSectionOwners() : mainSectionPeers()}
 				<div class="flex flex-column items-center justify-around w-100 min-vh-100">
 				  ${help.render()}
 					<div class="flex flex-column items-center justify-around w-100 min-vh-100">
-					<div class="flex flex-column items-start justify-between w-100 mw7 tl ">
-					<h2 class="f3 ttu uppercase dark-gray mv0">CREDITS</h2>
-						<ul class="list pl0 dark-gray">
-							<ul class="list pl0 mv4">
-							<li class="f3 deep-purple">Code</li>
-							<li class="f4"><a class="link dark-gray" href="https://hex22.org/" target="_blank">Hunor Karamán <span class="deep-purple">↗</span> </a></li>
-							</ul>
-							<ul class="list pl0 mv4">
-							<li class="f3 deep-purple">Design</li>
-							<li class="f4"><a class="link dark-gray" href="https://www.alexsingh.com" target="_blank">Alex Singh<span class="deep-purple">↗</span> </a></li>
-							</ul>
-							<ul class="list pl0 mv4">
-							<li class="f3 deep-purple">Type</li>
-								<li class="f4">
-									<a class="link dark-gray" href="https://rsms.me/inter/" target="_blank">Inter UI <span class="deep-purple">↗</span> </a>
-								</li>
-							</ul>
-						</ul>
-						</div>
-				</div>
-			</body>
+  					<div class="flex flex-column items-start justify-between w-100 mw7 tl ">
+  					<h2 class="f3 ttu uppercase dark-gray mv0">CREDITS</h2>
+  					<ul class="list pl0 dark-gray">
+  						<ul class="list pl0 mv4">
+  						  <li class="f3 deep-purple">Code</li>
+  						  <li class="f4"><a class="link dark-gray" href="https://hex22.org/" target="_blank">Hunor Karamán <span class="deep-purple">↗</span> </a></li>
+  						</ul>
+  						<ul class="list pl0 mv4">
+  							<li class="f3 deep-purple">Design</li>
+  							<li class="f4"><a class="link dark-gray" href="https://www.alexsingh.com" target="_blank">Alex Singh<span class="deep-purple">↗</span> </a></li>
+  						</ul>
+  						<ul class="list pl0 mv4">
+  							<li class="f3 deep-purple">Type</li>
+  							<li class="f4">
+  							  <a class="link dark-gray" href="https://rsms.me/inter/" target="_blank">Inter UI <span class="deep-purple">↗</span> </a>
+  						   </li>
+  						</ul>
+  					</ul>
+  				</div>
+			  </div>
+      </body>
 		`
 
-		async function fork(e) {
-			e.preventDefault()
-			try {
-				var archive = await DatArchive.fork(window.location.href)
-				window.location = archive.url
-			} catch (e) {
-				// do nothing
-			}
-		}
+    function mainSectionPeers() {
+      return html`
+        <div class="flex flex-column items-center justify-around w-100 min-vh-100">
+          <div class="flex flex-column items-start justify-between w-100 mw7 tl ">
+            <h2 class="f3 ttu uppercase dark-gray mv0">Listen to music with far away friends.</h2>
+            <h2 class="f3 dark-gray mv0"></h2>
+            <h2 class="f4 gray mv3">Soundscape is a temporary, collaborative playlist.</h2>
+          </div>
+          <div class="flex flex-column items-start justify-center w-100 mw7 ">
+            <a href="#" class="link-main flex f3 deep-purple link mv3" onclick="${next}">
+              <span class="flex ico-link mr3 f5 self-center">➤</span> Join this space.
+            </a>
+            <a href="#" class="link-main flex f3 deep-purple link mv3 " onclick="${fork}">
+              <span class="flex ico-link mr3 f5 self-center">➤</span> Create your space.
+            </a>
+          </div>
+        </div>
+      `
+
+      async function fork(e) {
+  			e.preventDefault()
+  			try {
+  				var archive = await DatArchive.fork(window.location.href)
+  				window.location = archive.url
+  			} catch (e) {
+  				// do nothing
+  			}
+  		}
+    }
+
+    function mainSectionOwners() {
+      return html`
+        <div class="flex flex-column items-center justify-around w-100 min-vh-100">
+          <div class="flex flex-column items-start justify-between w-100 mw7 tl ">
+            <h2 class="f3 ttu uppercase dark-gray mv0">Listen to music with far away friends.</h2>
+            <h2 class="f3 dark-gray mv0"></h2>
+            <h2 class="f4 gray mv3">Soundscape is a temporary, collaborative playlist.</h2>
+          </div>
+          <div class="flex flex-column items-start justify-center w-100 mw7 ">
+            <h2 class="f4 gray mv3">Welcome to your space. There are two more short steps to do before you can start throwing music into the playlist.</h2>
+            <a href="#" class="link-main flex f3 deep-purple link mv3" onclick="${next}">
+              <span class="flex ico-link mr3 f5 self-center">➤</span> Continue
+            </a>
+          </div>
+        </div>
+      `
+    }
 	}
 
 // TO DO
 // 1. Set a conditional styling for the NEXT button per my lame attempt on line 62. We should also add a link disabled property
 
-	function step1() {
+  function step1() {
 		return html`
 			<body class="flex self-center w-100 min-vh-100 f3 lh-copy pa5-ns pa3">
 				<div class="flex flex-row w-100 h-100 mw8 justify-between">
@@ -94,8 +118,6 @@ function view(state, emit) {
 			</body>
 		`
 	}
-
-
 
 	function step2() {
 		return html`
