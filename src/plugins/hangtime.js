@@ -60,6 +60,7 @@ function plugin() {
 			} else if (state.p2p) {
 				emitter.emit('messenger:clearpeer')
 			}
+      emitter.emit('render')
 		}
 
 		async function add(value) {
