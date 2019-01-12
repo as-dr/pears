@@ -3,9 +3,11 @@
 const html = require('nanohtml')
 const Playlist = require('../components/playlist')
 const FileUpload = require('../components/fileupload')
+const Invite = require('../components/invite')
 
 const playlist = new Playlist()
 const fileupload = new FileUpload()
+const inviteButton = new Invite()
 
 module.exports = view
 
@@ -18,7 +20,7 @@ function view(state, emit) {
 
 				<div class="flex flex-column h-100 items-start self-start">
 				  ${state.hangtime.peers.length + 1} LISTENER${state.hangtime.peers.length != 0 ? 'S' : ''}
-			    <a href="#" class="link f3 deep-purple mv2  br1">+ Invite Friends</a>
+			    ${inviteButton.render()}
 
   				<ul class="list flex flex-row w-100 pl0 f4 mv4">
   				  <li class="ml0 mr4">
@@ -30,7 +32,6 @@ function view(state, emit) {
 				    ${playlist.render(state.hangtime.list, state.hangtime.position, waiting)}
 			    </div>
 			  </div>
-			  <a href="#" class="link flex pv4 gray disabled-link" onclick="${back}">Settings</a>
 		  </div>
 		  ${fileupload.render()}
 		</body>
