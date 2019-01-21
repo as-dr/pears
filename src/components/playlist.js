@@ -39,13 +39,13 @@ module.exports = class Playlist extends Component {
 		function renderSong(item, id) {
 			var state = (id + t.list.length - filteredList.length) - t.current_index // 0 = current song, > 0 = played, < in queue
 			return html`
-				<div class="relative flex flex-row items-center w-100 mv1">
+				<div class="relative flex flex-row items-center w-100 mv1 truncate ellipsis">
 					<div class="player-strikethrough absolute z-999" style="top:20px; left: 20px; height: 4px;"></div>
 					${avatar(item.color)}
-					<span class="ttu ${state !== 0 ? (state < 0) ? 'strike o-30' : 'o-30' : ''}">
+					<div class="flex ${state !== 0 ? (state < 0) ? 'strike o-30' : 'o-30' : ''}">
             ${songtitle(item.text)}
             ${(waiting && state === 0) ? html`<span class="o-30 blink ml2">― Waiting for the others</span>` : null}
-          </span>
+          </div>
 				</div>
 			`
 		}
@@ -54,21 +54,23 @@ module.exports = class Playlist extends Component {
 			return html`
 				<div class="flex flex-row items-center w-100 mv1">
 					${avatar(item.color)}
-					<span class="ttu o-30" style="color: ${item.color};">${item.text}</span>
+					<span class="o-30 truncate ellipsis" style="color: ${item.color};">${item.text}</span>
 				</div>
 			`
 		}
 
 		function avatar(color) {
 			return html`
-				<div class="flex mr3" style="width: 12px; height: 12px; border-radius: 100px; background: ${color};"></div>
+				<div class="flex mr3">
+				<span class="" style="width: 12px; height: 12px; border-radius: 100px; background: ${color};"></span>
+				</div>
 			`
 		}
 
     function empty () {
       return html`
         <div class="o-30 mv2">
-          To add a song, simply drag it in here, or press the "+ Add song" button to search your computer.
+          To add a song, simply drag it in here, or click "Add song" button to search your computer.
         </div>
       `
     }
