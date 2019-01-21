@@ -77,16 +77,23 @@ function view(state, emit) {
     function mainSectionOwners() {
       return html`
         <div class="flex flex-column items-center justify-around w-100 min-vh-100">
-          <div class="flex flex-column items-start justify-between w-100 mw7 tl ">
-            <h2 class="f3 ttu uppercase dark-gray mv0">Listen to music with far away friends.</h2>
+          <div class="flex flex-column items-start justify-between w-100 tl mw7">
+            <h2 class="f3 ttu uppercase deep-purple mv0">Listen to music with far away friends.</h2>
             <h2 class="f3 dark-gray mv0"></h2>
-            <h2 class="f4 gray mv3">Soundscape is a temporary, collaborative playlist.</h2>
+            <h2 class="f4 gray mv3"><span class="pv1 ph2 bg-light-green deep-purple br2">Pears 🍐</span> is a temporary, collaborative peer-to-peer playlist.</h2>
           </div>
-          <div class="flex flex-column items-start justify-center w-100 mw7 ">
-            <h2 class="f4 gray mv3">Welcome to your space. There are two more short steps to do before you can start throwing music into the playlist.</h2>
-            <a href="#" class="link-main flex f3 deep-purple link mv3" onclick="${next}">
-              <span class="flex ico-link mr3 f5 self-center">➤</span> Continue
+					<div class="flex flex-column items-start w-100 mw7">
+						<div class="br2 ph3 bg-washed-purple">
+							<h2 class="f3 deep-purple mv0 pv1 lh-copy">Welcome to your space.</h2>
+						</div>
+            	<h2 class="f3 gray mv3 lh-copy mw6">You're two short steps away from creating your playlist.</h2>
+          </div>
+          <div class="flex flex-row items-center justify-start w-100 mw7 ">
+            <a href="#" class="link-main hover-button flex f3 deep-purple link mv3 ba ph3 pv1 br1" onclick="${next}">
+               Continue <span class="flex ico-link ml3 f5 self-center">▶</span>
             </a>
+						<h2 class="flex items-center f3 gray mv3 lh-copy mw6 mh4 o-70">
+             Or scroll to learn more <span class="f6 ml3">▼</span>
           </div>
         </div>
       `
@@ -102,17 +109,20 @@ function view(state, emit) {
 				<div class="flex flex-row w-100 h-100 mw8 justify-between">
 
 					<div class="flex flex-column items-center w-100 mw5 justify-center">
-					<a href="#" class="link flex self-start color-inherit" onclick="${back}">BACK</a>
+					<a href="#" class="link link-mini bb bw1 flex self-start color-inherit" onclick="${back}">BACK</a>
 					</div>
 
 					<div class="flex flex-column w-100 justify-center align-center">
 						<p class="mv0 deep-purple">1.</p>
 						<p class="mv0 deep-purple">SELECT A FOLDER</p>
 						<div class="flex flex-row w-100">
-						<p>	${as.render(emit)} on your computer to stream to and from.</p>
+						<p>	${as.render(emit)} to select a folder to stream to & from.</p>
 						</div>
-
-						<a href="#" class="link flex mw4 justify-center deep-purple f3 ph2 pv1 ba ttu uppercase ${as.archive != null ? 'o-100' : 'o-10 link-disabled'}" onclick="${next}">Next</a>
+						<div class="flex flex-row items-center justify-start w-100 mw7 ">
+						<a href="#" class="link-main hover-button flex mw4 f3 deep-purple link mv3 ba ph3 pv1 br1 ${as.archive != null ? 'o-100' : 'o-10 link-disabled'}" onclick="${next}">
+							Next <span class="flex ico-link ml3 f5 self-center">▶</span>
+						</a>
+						</div>
 					</div>
 				</div>
 			</body>
@@ -125,7 +135,7 @@ function view(state, emit) {
 			<div class="flex flex-row w-100 h-100 mw8 justify-between">
 
 			<div class="flex flex-column items-center w-100 mw5 justify-center">
-			<a href="#" class="link flex self-start color-inherit" onclick="${back}">BACK</a>
+			<a href="#" class="link link-mini bb bw1 flex self-start color-inherit" onclick="${back}">BACK</a>
 			</div>
 
 				<div class="flex flex-column w-100 justify-center align-center">
@@ -137,7 +147,12 @@ function view(state, emit) {
 					</div>
 					<p>Your avatar is a color that appears next to your song selections.</p>
 					${as.render(emit)}
-					<a href="#" class="link flex deep-purple ttu uppercase ${as.archive != null ? 'o-100' : 'o-10 link-disabled'}" onclick="${finish}">Finish</a>
+					<div class="flex flex-row items-center justify-start w-100 mw7 ">
+					<a href="#" class="link-main hover-button flex f3 deep-purple link mv3 ba ph3 pv1 br1 ${as.archive != null ? 'o-100' : 'o-10 link-disabled'}" onclick="${finish}">
+					Finish
+					<span class="flex ico-link ml3 f5 self-center">▶</span>
+					</a>
+					</div>
 				</div>
 			</div>
 		</body>
