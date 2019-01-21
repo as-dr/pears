@@ -13,7 +13,7 @@ module.exports = class Invite extends Component {
     const t = this
     return html`
       <div>
-        <a href="#" class="link f3 deep-purple mv2 br1" onclick="${onclick}">+ Invite Friends</a>
+        <a href="#" class="link link-mini deep-purple  bb pb1 bw1" onclick="${onclick}">Invite Friends</a>
         <span class="ml2 gray f4">${this.showMessage ? ` ${message}` : ''}</span>
       </div>
     `
