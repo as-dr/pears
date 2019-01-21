@@ -46,21 +46,34 @@ function view(state, emit) {
 
     function mainSectionPeers() {
       return html`
-        <div class="flex flex-column items-center justify-around w-100 min-vh-100">
-          <div class="flex flex-column items-start justify-between w-100 mw7 tl ">
-            <h2 class="f3 ttu uppercase dark-gray mv0">Listen to music with far away friends.</h2>
-            <h2 class="f3 dark-gray mv0"></h2>
-            <h2 class="f4 gray mv3">Soundscape is a temporary, collaborative playlist.</h2>
-          </div>
-          <div class="flex flex-column items-start justify-center w-100 mw7 ">
-            <a href="#" class="link-main flex f3 deep-purple link mv3" onclick="${next}">
-              <span class="flex ico-link mr3 f5 self-center">➤</span> Join this space.
-            </a>
-            <a href="#" class="link-main flex f3 deep-purple link mv3 " onclick="${fork}">
-              <span class="flex ico-link mr3 f5 self-center">➤</span> Create your space.
-            </a>
-          </div>
-        </div>
+			<div class="flex flex-column items-center justify-around w-100 min-vh-100">
+				<div class="flex flex-column items-start justify-between w-100 tl mw7">
+					<h2 class="f3 ttu uppercase deep-purple mv0">Listen to music with far away friends.</h2>
+					<h2 class="f3 dark-gray mv0"></h2>
+					<h2 class="f4 gray mv3"><span class="pv1 ph2 bg-light-green deep-purple br2">Pears 🍐</span> is a temporary, collaborative peer-to-peer playlist.</h2>
+				</div>
+				<div class="flex flex-column items-start w-100 mw7">
+					<div class="br2 ph3 bg-washed-purple">
+						<h2 class="f3 deep-purple mv0 pv1 lh-copy">This is a friends space.</h2>
+					</div>
+						<h2 class="f3 gray mv3 lh-copy mw6">You're two short steps away from joining this playlist.</h2>
+						<a href="#" class="link-main hover-button flex f3 deep-purple link mv3 ba ph3 pv1 br1" onclick="${next}">
+							 Join this space <span class="flex ico-link ml3 f5 self-center">▶</span>
+						</a>
+				</div>
+				<div class="flex flex-column w-100 mw7">
+				<div class="flex flex-row items-center justify-start w-100 mw7 ">
+
+
+					<a href="#" class="link-main hover-button flex f3 deep-purple link mv3 ba ph3 pv1 br1" onclick="${next}">
+						 Create your own space <span class="flex ico-link ml3 f5 self-center">▶</span>
+					</a>
+
+					<h2 class="flex items-center f3 gray mv3 lh-copy mw6 mh4 o-70">
+					 Or scroll to learn more <span class="f6 ml3">▼</span>
+				</div>
+				</div>
+			</div>
       `
 
       async function fork(e) {
