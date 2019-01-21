@@ -54,9 +54,9 @@ function view(state, emit) {
 				</div>
 				<div class="flex flex-column items-start w-100 mw7">
 					<div class="br2 ph3 bg-washed-purple">
-						<h2 class="f3 deep-purple mv0 pv1 lh-copy">This is a friends space.</h2>
+						<h2 class="f3 deep-purple mv0 pv1 lh-copy">This is a friends space called ${state.hangtime.space.title}</h2>
 					</div>
-						<h2 class="f3 gray mv3 lh-copy mw6">You're two short steps away from joining this playlist.</h2>
+						<h2 class="f3 gray mv3 lh-copy mw6">You're two short steps away from joining.</h2>
 						<a href="#" class="link-main hover-button flex f3 deep-purple link mv3 ba ph3 pv1 br1" onclick="${next}">
 							 Join this space <span class="flex ico-link ml3 f5 self-center">▶</span>
 						</a>

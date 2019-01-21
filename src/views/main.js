@@ -16,8 +16,10 @@ function view(state, emit) {
 	return html`
 		<body class="flex flex-row w-100 ph3 f3 lh-copy items-center justify-center" ondragover="${showUploader}">
 			<div class="flex flex-column justify-start items-start w-100 min-vh-100 mw7">
-        <a href="#" class="link link-mini bb bw1 pb1 flex mt4 mb5 gray" onclick="${back}">Leave</a>
-
+        <div class="flex flex-row w-100 mw7 mt4 mb5">
+          ${state.hangtime.space.title}
+          <a href="#" class="flex link link-mini bb bw1 pb1 gray ml3" onclick="${back}">Leave</a>
+        </div>
 				<div class="flex flex-column w-100 h-100 items-start self-center">
 				  ${state.hangtime.peers.length + 1} Listener ${state.hangtime.peers.length != 0 ? 'S' : ''}
 			    ${inviteButton.render()}
