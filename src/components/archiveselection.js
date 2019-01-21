@@ -12,8 +12,8 @@ module.exports = class ArchiveSelection extends Component {
 	createElement(emit) {
 		const t = this
 		return html`
-			<a href="#" class="link deep-purple ba pv1 ph2" onclick="${select}">
-				${this.archive == null ? 'SELECT A FOLDER' : shorten(this.archive.url)}
+			<a href="#" class="link-mini f3 deep-purple link mv3 mr2 bb bw1 pv1" onclick="${select}">
+				${this.archive == null ? 'Click Here' : shorten(this.archive.url)}
 			</a>
 		`
 
