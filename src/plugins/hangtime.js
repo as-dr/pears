@@ -103,7 +103,7 @@ function plugin() {
 
 		function update_player() {
       if (state.hangtime.list[state.hangtime.position].type == 'song') {
-        emitter.emit('player:set', state.hangtime.list[state.hangtime.position].text)
+        emitter.emit(state.events.PLAYER_SET, state.hangtime.list[state.hangtime.position].text)
         // preload if possible
         try_preload()
       } else {
@@ -113,7 +113,7 @@ function plugin() {
 
 		function try_preload() {
 			if (state.hangtime.list[state.hangtime.position + 1] && state.hangtime.list[state.hangtime.position + 1].type === 'song') {
-				emitter.emit('player:preload', state.hangtime.list[state.hangtime.position + 1].text)
+				emitter.emit(state.events.PLAYER_PRELOAD, state.hangtime.list[state.hangtime.position + 1].text)
 			}
 		}
 

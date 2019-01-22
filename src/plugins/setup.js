@@ -3,25 +3,31 @@
 module.exports = plugin
 
 function plugin(state, emitter) {
-	state.setup_step = 0
-	emitter.on('setup:nextstep', function() {
+  state.events.SETUP_NEXT = 'setup:nextstep'
+  state.events.SETUP_PREV = 'setup:prevstep'
+  state.events.SETUP_FINISH = 'setup:finish'
+  state.events.SETUP_DELETE = 'setup:delete'
+
+  state.setup_step = 0
+
+	emitter.on(state.events.SETUP_NEXT, function() {
 		state.setup_step++
 		emitter.emit('render')
 	})
-	emitter.on('setup:prevstep', function() {
+	emitter.on(state.events.SETUP_PREV, function() {
 		if (state.setup_step > 0) {
 			state.setup_step--
 			emitter.emit('render')
 		}
 	})
-	emitter.on('setup:finish', function(archive, color) {
+	emitter.on(state.events.SETUP_FINISH, function(archive, color) {
 		localStorage.setItem('local_archive', archive.url)
 		localStorage.setItem('avatar', color)
 		state.setup = false
 		emitter.emit('hangtime:loaded', archive.url)
 	})
-  emitter.on('setup:delete', function () {
-    emitter.emit('player:toggle')
+  emitter.on(state.events.SETUP_DELETE, function () {
+    emitter.emit(state.events.PLAYER_PLAY)
     localStorage.removeItem('local_archive')
     localStorage.removeItem('avatar')
     state.setup_step = 0

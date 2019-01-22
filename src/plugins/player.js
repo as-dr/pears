@@ -6,10 +6,15 @@ function plugin() {
 	const player = new Audio()
 	const preloader = new Audio()
 	return function (state, emitter) {
-		emitter.on('player:set', setsource)
-		emitter.on('player:play', togglePaused)
-    emitter.on('player:mute', toggleMute)
-		emitter.on('player:preload', preload)
+    state.events.PLAYER_SET = 'player:set'
+    state.events.PLAYER_PLAY = 'player:play'
+    state.events.PLAYER_MUTE = 'player:mute'
+    state.events.PLAYER_PRELOAD = 'player:preload'
+
+		emitter.on(state.events.PLAYER_SET, setsource)
+		emitter.on(state.events.PLAYER_PLAY, togglePaused)
+    emitter.on(state.events.PLAYER_MUTE, toggleMute)
+		emitter.on(state.events.PLAYER_PRELOAD, preload)
 
     // end of song magic
     window.magic = function () {

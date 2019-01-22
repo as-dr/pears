@@ -2,6 +2,7 @@
 
 var Component = require('nanocomponent')
 var html = require('nanohtml')
+var deburr = require('lodash.deburr')
 var { emit } = require('choo-shortemit')
 
 module.exports = class FileUpload extends Component {
@@ -63,7 +64,7 @@ module.exports = class FileUpload extends Component {
     reader.onload = async function (e) {
       var result = e.target.result
       t.visible = false
-      emit('hangtime:file', {name: file.name, data: result})
+      emit('hangtime:file', {name: deburr(file.name), data: result})
     }
     reader.readAsArrayBuffer(file)
   }
