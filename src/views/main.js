@@ -12,6 +12,8 @@ const inviteButton = new Invite()
 module.exports = view
 
 function view(state, emit) {
+  // set title to space title
+  emit(state.events.DOMTITLECHANGE, state.hangtime.space.title)
   var waiting = !state.hangtime.playing && (state.hangtime.position < state.hangtime.list.length - 1)
 	return html`
 		<body class="flex flex-row w-100 ph3 f3 lh-copy items-center justify-center" ondragover="${showUploader}">
