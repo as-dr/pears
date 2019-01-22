@@ -65,7 +65,7 @@ function view(state, emit) {
 				<div class="flex flex-row items-center justify-start w-100 mw7 ">
 
 
-					<a href="#" class="link-main hover-button flex f3 deep-purple link mv3 ba ph3 pv1 br1" onclick="${next}">
+					<a href="#" class="link-main hover-button flex f3 deep-purple link mv3 ba ph3 pv1 br1" onclick="${fork}">
 						 Create your own space <span class="flex ico-link ml3 f5 self-center">▶</span>
 					</a>
 
