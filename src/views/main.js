@@ -21,7 +21,7 @@ function view(state, emit) {
           <a href="#" class="flex link link-mini bb bw1 pb1 gray ml3" onclick="${back}">Leave</a>
         </div>
 				<div class="flex flex-column w-100 h-100 items-start self-center">
-				  ${state.hangtime.peers.length + 1} Listener ${state.hangtime.peers.length != 0 ? 'S' : ''}
+				  ${state.hangtime.peers.length + 1} Listener${state.hangtime.peers.length != 0 ? 's' : ''}
 			    ${inviteButton.render()}
 
   				<ul class="list flex flex-row w-100 pl0 f3 mv5">
