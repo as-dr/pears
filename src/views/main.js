@@ -18,11 +18,11 @@ function view(state, emit) {
 	return html`
 		<body class="flex flex-row w-100 pa4 f3 lh-copy items-start justify-start" ondragover="${showUploader}">
     <div class="flex flex-column items-start w-100 h-100 mw5 justify-start">
-    <a href="#" class="flex link link-mini f4 bb bw1 pb1 gray ml3 mt4" onclick="${back}">Leave</a>
+    <a href="#" class="flex link link-mini f4 bb bw1  gray ml3 mt4" onclick="${back}">Leave</a>
     </div>
       <div class="flex flex-column justify-start items-start w-100 min-vh-100 mw7">
         <div class="flex flex-row items-center  w-100 mw7 mt4 mb4">
-          ${state.hangtime.space.title}
+          <div class="f4 pv1 ph2 bg-washed-purple deep-purple br2">${state.hangtime.space.title}</div>
           <div class="flex flex-row ml4 gray f4 items-center">
           ${state.hangtime.peers.length + 1} Listener${state.hangtime.peers.length != 0 ? 's' : ''}
 			    ${inviteButton.render()}
