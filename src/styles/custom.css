@@ -71,3 +71,13 @@ a {
 .h-auto {
 	height: auto;
 }
+
+.blink-underline {
+	animation: blink-underline 1.85s ease-in-out infinite;
+}
+
+@keyframes blink-underline {
+	0% {border-color: #ccc;}
+	50% { border-color: hsla(255, 100%, 40%, 1);}
+	100% { border-color: #ccc;}
+}
