@@ -16,22 +16,31 @@ function view(state, emit) {
   emit(state.events.DOMTITLECHANGE, state.hangtime.space.title)
   var waiting = !state.hangtime.playing && (state.hangtime.position < state.hangtime.list.length - 1)
 	return html`
-		<body class="flex flex-row w-100 ph3 f3 lh-copy items-center justify-center" ondragover="${showUploader}">
-			<div class="flex flex-column justify-start items-start w-100 min-vh-100 mw7">
-        <div class="flex flex-row w-100 mw7 mt4 mb5">
+		<body class="flex flex-row w-100 pa4 f3 lh-copy items-start justify-start" ondragover="${showUploader}">
+    <div class="flex flex-column items-start w-100 h-100 mw5 justify-start">
+    <a href="#" class="flex link link-mini f4 bb bw1 pb1 gray ml3 mt4" onclick="${back}">Leave</a>
+    </div>
+      <div class="flex flex-column justify-start items-start w-100 min-vh-100 mw7">
+        <div class="flex flex-row items-center  w-100 mw7 mt4 mb4">
           ${state.hangtime.space.title}
-          <a href="#" class="flex link link-mini bb bw1 pb1 gray ml3" onclick="${back}">Leave</a>
-        </div>
-				<div class="flex flex-column w-100 h-100 items-start self-center">
-				  ${state.hangtime.peers.length + 1} Listener${state.hangtime.peers.length != 0 ? 's' : ''}
+          <div class="flex flex-row ml4 gray f4 items-center">
+          ${state.hangtime.peers.length + 1} Listener${state.hangtime.peers.length != 0 ? 's' : ''}
 			    ${inviteButton.render()}
+          </div>
+        </div>
+				<div class="flex flex-column   w-100 h-100 items-start self-center">
 
-  				<ul class="list flex flex-row w-100 pl0 f3 mv5">
-  				  <li class="ml0 mr4">
-  				    <a href="#" class="link link-mini deep-purple bb pb1 bw1" onclick="${toggleMute}">${state.hangtime.muted ? 'Unmute' : 'Mute'}</a>
+          <ul class="list flex flex-row items-center w-100 pl0 f3">
+            <li>
+              <a href="#"class="link-main hover-button flex f4 deep-purple link mv3 ba ph3 pv1 br1 blink-underline" onclick="${openFileDialog}">Add Song</a>
+            </li>
+  				  <li class="ml0 ml4">
+  				    <a href="#" class="link link-mini f4 deep-purple bb pb1 bw1" onclick="${toggleMute}">${state.hangtime.muted ? 'Unmute' : 'Mute'}</a>
+  				  </li>
+            <li class="ml0 ml4">
+  				    <a href="#" class="link link-mini f4 deep-purple bb pb1 bw1 strike o-20" onclick="${toggleMute}">Skip</a>
   				  </li>
   				</ul>
-          <a href="#"class="link link-mini w-auto bb bw1 f3 deep-purple mw5 mv2" onclick="${openFileDialog}">Add Song</a>
 			    <div class="flex flex-column w-100 h-auto mw7 pb4 self-center justify-center">
 				    ${playlist.render(state.hangtime.list, state.hangtime.position, waiting)}
 			    </div>
