@@ -70,7 +70,7 @@ module.exports = class Playlist extends Component {
     function empty () {
       return html`
         <div class="o-30 mv2">
-          To add a song, simply drag it in here, or click "Add song" button to search your computer.
+          To add a song, simply drag it in here, or click "Add Song" button to search your computer.
         </div>
       `
     }
