@@ -81,7 +81,7 @@ function plugin() {
 
 		function next() {
       // check if all peers have finished
-      if (!state.hangtime.playing && state.hangtime.finished_peers >= state.hangtime.peers.length - 1) {
+      if (!state.hangtime.playing && state.hangtime.finished_peers >= state.hangtime.peers.length) {
         // check playlist bounds
         if (state.hangtime.position <= state.hangtime.list.length - 1) {
           state.hangtime.position++

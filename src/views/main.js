@@ -14,6 +14,7 @@ module.exports = view
 function view(state, emit) {
   // set title to space title
   emit(state.events.DOMTITLECHANGE, state.hangtime.space.title)
+
   var waiting = !state.hangtime.playing && (state.hangtime.position < state.hangtime.list.length - 1)
 	return html`
 		<body class="flex flex-row w-100 pa4 f3 lh-copy items-start justify-start" ondragover="${showUploader}">

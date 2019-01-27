@@ -16,11 +16,6 @@ function plugin() {
     emitter.on(state.events.PLAYER_MUTE, toggleMute)
 		emitter.on(state.events.PLAYER_PRELOAD, preload)
 
-    // end of song magic
-    window.magic = function () {
-      player.currentTime = player.duration - 10
-    }
-
 		player.autoplay = true
 		player.preload = 'auto'
 		player.addEventListener('ended', onended)
