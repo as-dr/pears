@@ -9,6 +9,17 @@ Download [Beaker](https://beakerbrowser.com) and click [here](https://pears.seed
 
 Currently, only mp3 files can be streamed. Please expect stability issues and bugs.
 
+## Usage
+To create a new space for you and your friends:
+
+1. Install [Beaker Browser](https://beakerbrowser.com/)
+2. Go to [dat://pears.seed.hex22.org/](dat://pears.seed.hex22.org)
+3. Click the three dots at the right part of the URL bar
+4. Click __Make editable copy__
+5. Give it a name and click __Create copy__
+
+To join a space simply navigate to the `dat://` URL you got from your friend, click on __Join this space__ and follow the steps.
+
 ## Development
 ```
 git clone https://github.com/as-dr/noname
