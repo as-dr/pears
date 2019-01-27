@@ -79,30 +79,28 @@ function plugin() {
 			}
 		}
 
-    // next song magic
-    window.next = next
-
 		function next() {
-      // if it's not the end of the list
-			if (state.hangtime.finished_peers >= state.hangtime.peers.length - 1) {
-				state.hangtime.position++
-				state.hangtime.finished_peers = 0
-        // update player
-				if (state.hangtime.position <= state.hangtime.list.length - 1) {
-					emitter.emit('hangtime:updateplayer')
-				}
-        // delete the previous song from your archive
-        var prevFile = state.hangtime.list[state.hangtime.position - 1].text
-        if (prevFile.indexOf(archive.url) !== -1 && !inList(prevFile)) {
-          prevFile = prevFile.replace(archive.url, '')
-          unlink(prevFile)
+      // check if all peers have finished
+      if (!state.hangtime.playing && state.hangtime.finished_peers >= state.hangtime.peers.length - 1) {
+        // check playlist bounds
+        if (state.hangtime.position <= state.hangtime.list.length - 1) {
+          state.hangtime.position++
+          state.hangtime.finished_peers = 0
+          // update player
+          emitter.emit('hangtime:updateplayer')
+          // delete the previous song from your archive
+          var prevFile = state.hangtime.list[state.hangtime.position - 1].text
+          if (prevFile.indexOf(archive.url) !== -1 && !inList(prevFile)) {
+            prevFile = prevFile.replace(archive.url, '')
+            unlink(prevFile)
+          }
         }
-			}
+      }
       emitter.emit('render')
 		}
 
 		function update_player() {
-      if (state.hangtime.list[state.hangtime.position].type == 'song') {
+      if (state.hangtime.list[state.hangtime.position] && state.hangtime.list[state.hangtime.position].type == 'song') {
         emitter.emit(state.events.PLAYER_SET, state.hangtime.list[state.hangtime.position].text)
         // preload if possible
         try_preload()

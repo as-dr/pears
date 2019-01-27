@@ -38,7 +38,7 @@ function view(state, emit) {
   				    <a href="#" class="link link-mini f4 deep-purple bb pb1 bw1" onclick="${toggleMute}">${state.hangtime.muted ? 'Unmute' : 'Mute'}</a>
   				  </li>
             <li class="ml0 ml4">
-  				    <a href="#" class="link link-mini f4 deep-purple bb pb1 bw1 strike o-20" onclick="${toggleMute}">Skip</a>
+  				    <a href="#" class="link link-mini f4 deep-purple bb pb1 bw1 strike o-20" onclick="${e => e.preventDefault()}">Skip</a>
   				  </li>
   				</ul>
 			    <div class="flex flex-column w-100 h-auto mw7 pb4 self-center justify-center">

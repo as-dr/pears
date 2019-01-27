@@ -73,7 +73,10 @@ function plugin() {
 		}
 
 		function onupdate() {
-      state.hangtime.playing = true
+      if (!state.hangtime.playing) {
+        state.hangtime.playing = true
+        emitter.emit('render')
+      }
 			state.hangtime.time = player.currentTime
 		}
 	}

@@ -108,8 +108,12 @@ module.exports = class Playlist extends Component {
 		}
 	}
 
-	update(list) {
-		return true
+	update(list, index, waiting) {
+		return (
+      list.length !== this.list.length ||
+      index !== this.index ||
+      list[index] !== this.list[this.index]
+    )
 	}
 }
 
