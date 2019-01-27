@@ -7,7 +7,20 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'HalibutSerif';
+  src: url('src/type/halibutserif-expanded.woff2') format('woff2'),
+       url('src/type/halibutserif-expanded.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
-	font-family: 'InterUI', 'system-ui', serif ;
+	font-family: 'InterUI', 'system-ui', sans-serif ;
 	font-weight: 200 !important;
+}
+
+.font-halibut {
+  font-family:'HalibutSerif', serif;
 }

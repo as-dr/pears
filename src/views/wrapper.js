@@ -12,8 +12,35 @@ module.exports = function (state, emit) {
 
   function loading () {
     return html`
-      <body class="pa4">
-        <h2 class="f4 gray mv3">LOADING</h2>
+      <body class="relative">
+        <section class="dn fixed w-100 h-100 flex overflow-hidden">
+          <div class="flex flex-column items-center justify-center  w-100 h-100 vertical-scroll f1 deep-purple">
+        <h2 class="font-halibut mv3">LOADING</h2>
+        <h2 class="font-halibut mv3">LOADING</h2>
+        <h2 class="font-halibut mv3">LOADING</h2>
+        <h2 class="font-halibut mv3">LOADING</h2>
+        <h2 class="font-halibut mv3">LOADING</h2>
+        <h2 class="font-halibut mv3">LOADING</h2>
+        <h2 class="font-halibut mv3">LOADING</h2>
+        <h2 class="font-halibut mv3">LOADING</h2>
+        <h2 class="font-halibut mv3">LOADING</h2>
+        <h2 class="font-halibut mv3">LOADING</h2>
+        <h2 class="font-halibut mv3">LOADING</h2>
+        <h2 class="font-halibut mv3">LOADING</h2>
+        <h2 class="font-halibut mv3">LOADING</h2>
+        <h2 class="font-halibut mv3">LOADING</h2>
+        <h2 class="font-halibut mv3">LOADING</h2>
+        <h2 class="font-halibut mv3">LOADING</h2>
+        <h2 class="font-halibut mv3">LOADING</h2>
+        <h2 class="font-halibut mv3">LOADING</h2>
+        <h2 class="font-halibut mv3">LOADING</h2>
+        <h2 class="font-halibut mv3">LOADING</h2>
+        <h2 class="font-halibut mv3">LOADING</h2>
+        <h2 class="font-halibut mv3">LOADING</h2>
+        <h2 class="font-halibut mv3">LOADING</h2>
+        <h2 class="font-halibut mv3">LOADING</h2>
+          </div>
+        </section>
       </body>
     `
   }

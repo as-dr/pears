@@ -22,7 +22,7 @@ module.exports = class FileUpload extends Component {
     return html`
       <div class="flex-column justify-center items-center pa5 fixed top-0 left-0 w-100 h-100 bg-white-80 bw5 bw2 ${!this.visible ? 'dn' : 'flex'}"
         ondragover="${dragOver}" ondragleave="${dragLeave}" ondrop="${drop}">
-        <div class="flex f-subheadline color-blue">DROP THAT SONG</div>
+        <div class="font-halibut flex f-subheadline color-blue">DROP THAT SONG</div>
         ${this.fileinput}
       </div>
     `

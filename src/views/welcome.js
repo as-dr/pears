@@ -37,6 +37,9 @@ function view (state, emit) {
                 <li class="f4">
                   <a class="link dark-gray" href="https://rsms.me/inter/" target="_blank">Inter UI <span class="deep-purple">↗</span> </a>
                  </li>
+								 <li class="f4">
+                   <a class="link dark-gray" href="http://collletttivo.it/" target="_blank">Halibut <span class="deep-purple">↗</span> </a>
+                  </li>
               </ul>
             </ul>
           </div>
