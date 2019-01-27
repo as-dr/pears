@@ -32,7 +32,7 @@ function view (state, emit) {
 
           <ul class="list flex flex-row items-center w-100 pl0 f3">
             <li>
-              <a href="#"class="link-main hover-button flex f4 deep-purple link mv3 ba ph3 pv1 br1 blink-underline" onclick="${openFileDialog}">Add Song</a>
+              <a href="#"class="link-main hover-button flex f4 deep-purple link mv3 ba ph3 pv1 br1 ${state.pears.list.length === 0 ? 'blink-underline' : ''}" onclick="${openFileDialog}">Add Song</a>
             </li>
             <li>
             ${inviteButton.render()}
@@ -66,6 +66,7 @@ function view (state, emit) {
   }
 
   function openFileDialog (e) {
+    e.preventDefault()
     fileupload.openDialog()
   }
 
