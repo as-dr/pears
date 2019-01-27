@@ -35,6 +35,12 @@
     "yo-yoify": "^4.3.0"
   },
   "standard": {
-    "globals": ["DatArchive", "experimental", "localStorage", "FileReader", "Audio"]
+    "globals": [
+      "DatArchive",
+      "experimental",
+      "localStorage",
+      "FileReader",
+      "Audio"
+    ]
   }
 }
