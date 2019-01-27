@@ -13,9 +13,9 @@ module.exports = class Invite extends Component {
     const t = this
     return html`
       <div class="relative flex items-center">
-        <a href="#" class="relative flex link link-mini deep-purple bb bw1 ml4 " onclick="${onclick}">
-          Invite Friends
-          <span class="fixed w-auto gray f4 bg-white">
+        <a href="#" class="link-main hover-button flex f4 deep-purple link mv3 ba ph3 pv1 br1 ml4" onclick="${onclick}">
+          Add Friends
+          <span class="fixed absolute-center-align w-auto br1 gray f4 pa2 bg-light-green dark-green  ${this.showMessage ? 'flex move-down' : 'dn'}" style="top: 8px; width:540px;">
           ${this.showMessage ? ` ${message}` : ''}
           </span>
         </a>
@@ -31,7 +31,7 @@ module.exports = class Invite extends Component {
       setTimeout(function () {
         t.showMessage = false
         t.rerender()
-      }, 5000)
+      }, 3000)
     }
   }
 

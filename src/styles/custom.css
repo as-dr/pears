@@ -12,6 +12,13 @@ a {
 	outline: 0 !important;
 }
 
+.absolute-center-align {
+	position: fixed;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+}
 
 .link-disabled {
 	pointer-events: none;
@@ -80,4 +87,15 @@ a {
 	0% {border-color: #ccc;}
 	50% { border-color: hsla(255, 100%, 40%, 1);}
 	100% { border-color: #ccc;}
+}
+
+.move-down {
+	animation: move-down 3s ease-in-out;
+}
+
+@keyframes move-down {
+	0% {transform:translateY(0%); opacity:0;}
+	10% {transform:translateY(10%);opacity:1;}
+	90% {transform:translateY(10%);opacity:1;}
+	100% {transform:translateY(0%);opacity:0;}
 }
