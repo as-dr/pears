@@ -69,9 +69,20 @@ module.exports = class Playlist extends Component {
 
     function empty () {
       return html`
-        <div class="o-30 mv2">
-          To add a song, simply drag it in here, or click "Add Song" button to search your computer.
-        </div>
+        <ul class=" mv2 pl0 list f4">
+					<ul class="list pl0 mb4">
+					<li class="deep-purple">How do I add a song?</li>
+					<li class="gray mt2">Just drag any <span class="deep-purple">MP3</span> file in here, or click the <span class="bg-washed-purple deep-purple link mv3 ph3 pv1 br1">Add Song</span> button above to search your computer.</li>
+					</ul>
+					<ul class="list pl0 mv5">
+					<li class="deep-purple">How do I invite my friends?</li>
+					<li class="gray mt2">Click on the <span class="bg-washed-purple deep-purple link mv3 ph3 pv1 br1">Add Friends</span> button and it will copy the URL of the space to your clipboard. Send it to your friends and tell them to access it via Beaker.</li>
+					</ul>
+					<ul class="list pl0 mv5">
+					<li class="deep-purple">How do I name my space?</li>
+					<li class="gray mt2">Rename the archive (folder) in the <a class="link link-mini f4 deep-purple bb pb1 bw1" href="beaker://library/" target="_new">Beaker Library</a> and it'll be reflected here.</li>
+					</ul>
+        </ul>
       `
     }
   }
