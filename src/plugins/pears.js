@@ -49,16 +49,18 @@ function plugin () {
       state.loaded = true
 
       localArchive = localArchive || datUrl
-      if (state.p2p && !state.setup) {
+      if (state.p2p) {
         state.pears.space = await space.getInfo()
-        archive = new DatArchive(localArchive)
+        if (!state.setup) {
+          archive = new DatArchive(localArchive)
 
-        const color = localStorage.getItem('avatar') || 'salmon'
-        state.pears.me.color = color
+          const color = localStorage.getItem('avatar') || 'salmon'
+          state.pears.me.color = color
 
-        emitter.emit('messenger:newpeer', localArchive, color)
-      } else if (state.p2p) {
-        emitter.emit('messenger:clearpeer')
+          emitter.emit('messenger:newpeer', localArchive, color)
+        } else {
+          emitter.emit('messenger:clearpeer')
+        }
       }
       emitter.emit('render')
     }
