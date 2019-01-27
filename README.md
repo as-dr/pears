@@ -5,10 +5,6 @@ v0.5
 
 Pears is a temporary, collaborative peer-to-peer playlist.
 
-Download [Beaker](https://beakerbrowser.com) and click [here](https://pears.seed.hex22.org) to test it out.
-
-Currently, only mp3 files can be streamed. Please expect stability issues and bugs.
-
 ## Usage
 To create a new space for you and your friends:
 
@@ -19,6 +15,11 @@ To create a new space for you and your friends:
 5. Give it a name and click __Create copy__
 
 To join a space simply navigate to the `dat://` URL you got from your friend, click on __Join this space__ and follow the steps.
+
+## NB
+
+Currently, only mp3 files can be streamed. Please expect stability issues and bugs.
+
 
 ## Development
 ```
