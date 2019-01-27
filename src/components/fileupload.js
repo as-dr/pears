@@ -6,44 +6,44 @@ var deburr = require('lodash.deburr')
 var { emit } = require('choo-shortemit')
 
 module.exports = class FileUpload extends Component {
-	constructor() {
-		super()
+  constructor () {
+    super()
 
-		this.visible = false
+    this.visible = false
     this.fileinput = null
     this.closeTimeout = null
-	}
+  }
 
-	createElement() {
-		const t = this
+  createElement () {
+    const t = this
 
     this.fileinput = html`<input type="file" onchange="${onchange}" class="dn">`
 
-		return html`
-			<div class="flex-column justify-center items-center pa5 fixed top-0 left-0 w-100 h-100 bg-white-80 bw5 bw2 ${!this.visible ? 'dn' : 'flex'}"
-				ondragover="${drag_over}" ondragleave="${drag_leave}" ondrop="${drop}">
-				<div class="flex f-subheadline color-blue">DROP THAT SONG</div>
+    return html`
+      <div class="flex-column justify-center items-center pa5 fixed top-0 left-0 w-100 h-100 bg-white-80 bw5 bw2 ${!this.visible ? 'dn' : 'flex'}"
+        ondragover="${dragOver}" ondragleave="${dragLeave}" ondrop="${drop}">
+        <div class="flex f-subheadline color-blue">DROP THAT SONG</div>
         ${this.fileinput}
-			</div>
-		`
+      </div>
+    `
 
-		function drag_over(e) {
-			e.preventDefault()
+    function dragOver (e) {
+      e.preventDefault()
       if (t.closeTimeout) clearTimeout(t.closeTimeout)
-		}
+    }
 
-		function drag_leave(e) {
-			e.preventDefault()
+    function dragLeave (e) {
+      e.preventDefault()
       if (t.closeTimeout) clearTimeout(t.closeTimeout)
-      t.closeTimeout = setTimeout(function() {
+      t.closeTimeout = setTimeout(function () {
         t.toggle(false)
       }, 500)
     }
 
-		function drop(e) {
-			e.preventDefault()
+    function drop (e) {
+      e.preventDefault()
 
-			var file = e.dataTransfer.files[0]
+      var file = e.dataTransfer.files[0]
 
       if (file) {
         t.uploadFile(file)
@@ -51,38 +51,38 @@ module.exports = class FileUpload extends Component {
         t.visible = false
         t.rerender()
       }
-		}
+    }
 
-    function onchange(e) {
+    function onchange (e) {
       t.uploadFile(this.files[0])
     }
-	}
+  }
 
-  uploadFile(file) {
+  uploadFile (file) {
     var t = this
     var reader = new FileReader()
     reader.onload = async function (e) {
       var result = e.target.result
       t.visible = false
-      emit('hangtime:file', {name: deburr(file.name), data: result})
+      emit('hangtime:file', { name: deburr(file.name), data: result })
     }
     reader.readAsArrayBuffer(file)
   }
 
-  openDialog() {
+  openDialog () {
     this.fileinput.click()
   }
 
-	toggle(visibility) {
+  toggle (visibility) {
     if (visibility) {
       this.visible = visibility
     } else {
       this.visible = !this.visible
     }
-		this.rerender()
-	}
+    this.rerender()
+  }
 
-	update() {
-		return true
-	}
+  update () {
+    return true
+  }
 }

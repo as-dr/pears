@@ -2,17 +2,17 @@
 
 module.exports = plugin
 
-function plugin() {
-	return function (state, emitter) {
+function plugin () {
+  return function (state, emitter) {
     state.loaded = false
 
-		var archive = null
+    var archive = null
     var space = null
 
-		// check if data exists in localstorage
-		var local_archive = localStorage.getItem('local_archive')
+    // check if data exists in localstorage
+    var localArchive = localStorage.getItem('localArchive')
 
-		state.setup = !local_archive
+    state.setup = !localArchive
     try {
       space = new DatArchive(window.location.href)
       // check if datPeers is available
@@ -25,61 +25,61 @@ function plugin() {
       state.p2p = false
     }
 
-		state.hangtime = {
-			peers: [],
-			me: {},
-			list: [],
+    state.hangtime = {
+      peers: [],
+      me: {},
+      list: [],
       space: null,
-			position: 0,
-			time: 0,
-			finished_peers: 0,
+      position: 0,
+      time: 0,
+      finished_peers: 0,
       responsesReceived: 0,
       muted: false,
       playing: false
-		}
+    }
 
-		emitter.on(state.events.DOMCONTENTLOADED, loaded)
-		emitter.on('hangtime:loaded', loaded)
-		emitter.on('hangtime:add', add)
-		emitter.on('hangtime:file', writeFile)
-		emitter.on('hangtime:next', next)
-		emitter.on('hangtime:updateplayer', update_player)
+    emitter.on(state.events.DOMCONTENTLOADED, loaded)
+    emitter.on('hangtime:loaded', loaded)
+    emitter.on('hangtime:add', add)
+    emitter.on('hangtime:file', writeFile)
+    emitter.on('hangtime:next', next)
+    emitter.on('hangtime:updateplayer', updatePlayer)
 
-		async function loaded(dat_url) {
+    async function loaded (datUrl) {
       state.hangtime.space = await space.getInfo()
       state.loaded = true
 
-			local_archive = local_archive || dat_url
-			if (state.p2p && !state.setup) {
-				archive = new DatArchive(local_archive)
+      localArchive = localArchive || datUrl
+      if (state.p2p && !state.setup) {
+        archive = new DatArchive(localArchive)
 
-				const color = localStorage.getItem('avatar') || 'salmon'
+        const color = localStorage.getItem('avatar') || 'salmon'
         state.hangtime.me.color = color
 
-				emitter.emit('messenger:newpeer', local_archive, color)
-			} else if (state.p2p) {
-				emitter.emit('messenger:clearpeer')
-			}
+        emitter.emit('messenger:newpeer', localArchive, color)
+      } else if (state.p2p) {
+        emitter.emit('messenger:clearpeer')
+      }
       emitter.emit('render')
-		}
+    }
 
-		async function add(value) {
-			state.hangtime.list.push({
-				type: "song",
-				text: value,
-				color: state.hangtime.me.color
-			})
-			emitter.emit('messenger:add', value)
-			emitter.emit('render')
+    async function add (value) {
+      state.hangtime.list.push({
+        type: 'song',
+        text: value,
+        color: state.hangtime.me.color
+      })
+      emitter.emit('messenger:add', value)
+      emitter.emit('render')
       // update the player if the new one is the next song
-			if (state.hangtime.position == (state.hangtime.list.length - 1) || state.hangtime.list[state.hangtime.position].type !== 'song') {
-				emitter.emit('hangtime:updateplayer')
-			} else {
-				try_preload()
-			}
-		}
+      if (state.hangtime.position === (state.hangtime.list.length - 1) || state.hangtime.list[state.hangtime.position].type !== 'song') {
+        emitter.emit('hangtime:updateplayer')
+      } else {
+        tryPreload()
+      }
+    }
 
-		function next() {
+    function next () {
       // check if all peers have finished
       if (!state.hangtime.playing && state.hangtime.finished_peers >= state.hangtime.peers.length) {
         // check playlist bounds
@@ -97,39 +97,39 @@ function plugin() {
         }
       }
       emitter.emit('render')
-		}
+    }
 
-		function update_player() {
-      if (state.hangtime.list[state.hangtime.position] && state.hangtime.list[state.hangtime.position].type == 'song') {
+    function updatePlayer () {
+      if (state.hangtime.list[state.hangtime.position] && state.hangtime.list[state.hangtime.position].type === 'song') {
         emitter.emit(state.events.PLAYER_SET, state.hangtime.list[state.hangtime.position].text)
         // preload if possible
-        try_preload()
+        tryPreload()
       } else {
         emitter.emit('hangtime:next')
       }
-		}
+    }
 
-		function try_preload() {
-			if (state.hangtime.list[state.hangtime.position + 1] && state.hangtime.list[state.hangtime.position + 1].type === 'song') {
-				emitter.emit(state.events.PLAYER_PRELOAD, state.hangtime.list[state.hangtime.position + 1].text)
-			}
-		}
+    function tryPreload () {
+      if (state.hangtime.list[state.hangtime.position + 1] && state.hangtime.list[state.hangtime.position + 1].type === 'song') {
+        emitter.emit(state.events.PLAYER_PRELOAD, state.hangtime.list[state.hangtime.position + 1].text)
+      }
+    }
 
     // fs
-    async function writeFile(file) {
-			await archive.writeFile(file.name, file.data)
-			emitter.emit('hangtime:add', archive.url + '/' + file.name)
-		}
+    async function writeFile (file) {
+      await archive.writeFile(file.name, file.data)
+      emitter.emit('hangtime:add', archive.url + '/' + file.name)
+    }
 
-    function unlink(filename) {
+    function unlink (filename) {
       archive.unlink(filename)
     }
 
-    function inList(file) {
+    function inList (file) {
       for (var i = 0; i < state.hangtime.list.length; i++) {
         if (state.hangtime.list[i].text === file) return true
       }
       return false
     }
-	}
+  }
 }

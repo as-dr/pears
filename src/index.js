@@ -8,9 +8,9 @@ css('./styles/fonts.css')
 const app = choo()
 
 app.use((state, emitter) => {
-	emitter.on('re', () => {
-		emitter.emit('render')
-	})
+  emitter.on('re', () => {
+    emitter.emit('render')
+  })
 })
 app.use(require('choo-shortemit'))
 app.use(require('./plugins/player')())

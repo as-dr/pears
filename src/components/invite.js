@@ -4,12 +4,12 @@ const html = require('choo/html')
 const message = 'The URL of the space has been copied to your clipboard.'
 
 module.exports = class Invite extends Component {
-  constructor() {
+  constructor () {
     super()
     this.showMessage = false
   }
 
-  createElement() {
+  createElement () {
     const t = this
     return html`
       <div class="relative flex items-center">
@@ -22,7 +22,7 @@ module.exports = class Invite extends Component {
       </div>
     `
 
-    function onclick(e) {
+    function onclick (e) {
       e.preventDefault()
       copyToClipboard(`${window.location.protocol}//${window.location.hostname}/`)
       t.showMessage = true
@@ -35,7 +35,7 @@ module.exports = class Invite extends Component {
     }
   }
 
-  update() {
+  update () {
     return false
   }
 }
@@ -55,4 +55,4 @@ const copyToClipboard = str => {
     document.getSelection().removeAllRanges()
     document.getSelection().addRange(selected)
   }
-};
+}

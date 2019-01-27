@@ -2,21 +2,21 @@ const Component = require('nanocomponent')
 const html = require('choo/html')
 
 const questions = [
-  {q: 'What is this?', r: 'Listen to a music with far away friends. Soundscape is a temporary, collaborative playlist you create with your friends.'},
-  {q: "What's DAT?", r: 'DAT is like HTTP. The difference is that DAT is designed for peer-to-peer connections. That means when you use Soundscape, people connect directly to each others computers. With HTTP, people connect to a central computer, usually owned by a company, like when you listen to music on Spotify.'},
-  {q: 'Why do I need to use Beaker Browser?', r: "Beaker is the best way to access DAT links. DAT isn't currently supported by most major browsers."},
-  {q: 'Can I add streaming links?', r: 'Not yet. This version only lets you add MP3s that you have on your computer. Remember those?'},
-  {q: 'Can I set admin permissions?', r: "They were left out intentionally as a design choice. When everyone can manipulate the space, it limits how many people can listen before disagreements or griefing emerges. We're presently more interested in encouraging the creation of small, trusted spaces for close friends."},
-  {q: "Why isn't my playlist permanent?", r: "Songs added to a playlist are deleted from your hard drive after they're played. This is a small nod of respect to the many artists whose music make our days."}
+  { q: 'What is this?', r: 'Listen to a music with far away friends. Soundscape is a temporary, collaborative playlist you create with your friends.' },
+  { q: "What's DAT?", r: 'DAT is like HTTP. The difference is that DAT is designed for peer-to-peer connections. That means when you use Soundscape, people connect directly to each others computers. With HTTP, people connect to a central computer, usually owned by a company, like when you listen to music on Spotify.' },
+  { q: 'Why do I need to use Beaker Browser?', r: "Beaker is the best way to access DAT links. DAT isn't currently supported by most major browsers." },
+  { q: 'Can I add streaming links?', r: 'Not yet. This version only lets you add MP3s that you have on your computer. Remember those?' },
+  { q: 'Can I set admin permissions?', r: "They were left out intentionally as a design choice. When everyone can manipulate the space, it limits how many people can listen before disagreements or griefing emerges. We're presently more interested in encouraging the creation of small, trusted spaces for close friends." },
+  { q: "Why isn't my playlist permanent?", r: "Songs added to a playlist are deleted from your hard drive after they're played. This is a small nod of respect to the many artists whose music make our days." }
 ]
 
 module.exports = class Help extends Component {
-  constructor() {
+  constructor () {
     super()
     this.opened = -1
   }
 
-  createElement() {
+  createElement () {
     const t = this
     return html`
       <div class="flex flex-column items-start justify-between w-100 mw7 tl ">
@@ -33,7 +33,7 @@ module.exports = class Help extends Component {
       </div>
     `
 
-    function open(id) {
+    function open (id) {
       if (t.opened !== id) {
         t.opened = id
       } else {
@@ -43,7 +43,7 @@ module.exports = class Help extends Component {
     }
   }
 
-  update() {
+  update () {
     return false
   }
 }
