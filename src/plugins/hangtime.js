@@ -10,7 +10,7 @@ function plugin () {
     var space = null
 
     // check if data exists in localstorage
-    var localArchive = localStorage.getItem('localArchive')
+    var localArchive = localStorage.getItem('localarchive')
 
     state.setup = !localArchive
     try {

@@ -21,14 +21,14 @@ function plugin (state, emitter) {
     }
   })
   emitter.on(state.events.SETUP_FINISH, function (archive, color) {
-    localStorage.setItem('local_archive', archive.url)
+    localStorage.setItem('localarchive', archive.url)
     localStorage.setItem('avatar', color)
     state.setup = false
     emitter.emit('hangtime:loaded', archive.url)
   })
   emitter.on(state.events.SETUP_DELETE, function () {
     emitter.emit(state.events.PLAYER_PLAY)
-    localStorage.removeItem('local_archive')
+    localStorage.removeItem('localarchive')
     localStorage.removeItem('avatar')
     state.setup_step = 0
     state.setup = true
