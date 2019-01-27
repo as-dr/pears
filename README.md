@@ -1,14 +1,14 @@
 # Pears
 v0.5
 
-**Listen to music with far away friends**
+### Listen to music with far away friends.
 
 Pears is a temporary, collaborative peer-to-peer playlist.
 
-Download [Beaker](https://beakerbrowser.com) and click [here](pears.seed.hex22.org) to test it out.
+Download [Beaker](https://beakerbrowser.com) and click [here](https://pears.seed.hex22.org) to test it out.
 
 Currently, only mp3 files can be streamed. Please expect stability issues and bugs.
- 
+
 
 ## development
 ```
