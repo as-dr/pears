@@ -15,7 +15,7 @@ app.use((state, emitter) => {
 app.use(require('choo-shortemit'))
 app.use(require('./plugins/player')())
 app.use(require('./plugins/setup'))
-app.use(require('./plugins/hangtime')())
+app.use(require('./plugins/pears')())
 app.use(require('./plugins/messenger')())
 
 app.route('*', require('./views/wrapper'))

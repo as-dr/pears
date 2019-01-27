@@ -6,7 +6,7 @@ module.exports = plugin
 
 function plugin () {
   return function (state, emitter) {
-    state.hangtime.responsesReceived = 0
+    state.pears.responsesReceived = 0
 
     emitter.on('messenger:newpeer', newpeer)
     emitter.on('messenger:clearpeer', clearpeer)
@@ -19,7 +19,7 @@ function plugin () {
         archive: datUrl,
         color: color
       })
-      state.hangtime.me = await experimental.datPeers.getSessionData()
+      state.pears.me = await experimental.datPeers.getSessionData()
 
       experimental.datPeers.addEventListener('message', onmessage)
       experimental.datPeers.addEventListener('connect', updatepeers)
@@ -42,8 +42,8 @@ function plugin () {
           await updatepeers()
           break
         case MESSAGE_TYPES.NEWPEER:
-          if (state.hangtime.list.length > 0) {
-            await send.updateList(data.peer, state.hangtime.list, state.hangtime.position, state.hangtime.time)
+          if (state.pears.list.length > 0) {
+            await send.updateList(data.peer, state.pears.list, state.pears.position, state.pears.time)
           }
           await updatepeers()
           break
@@ -54,8 +54,8 @@ function plugin () {
           await handleAdd(data)
           break
         case MESSAGE_TYPES.FINISHED:
-          state.hangtime.finished_peers++
-          emitter.emit('hangtime:next')
+          state.pears.finished_peers++
+          emitter.emit('pears:next')
           break
       }
     }
@@ -63,50 +63,50 @@ function plugin () {
     // update the list of peers
     async function updatepeers () {
       var peers = await experimental.datPeers.list()
-      state.hangtime.peers = []
+      state.pears.peers = []
       for (var i = 0; i < peers.length; i++) {
         const peer = await experimental.datPeers.get(peers[i].id)
         if (peer.sessionData && peer.sessionData.archive !== undefined) {
-          state.hangtime.peers.push(peers[i])
+          state.pears.peers.push(peers[i])
         }
       }
       emitter.emit('render')
     }
 
     async function handleUpdateList (data) {
-      state.hangtime.responsesReceived++
-      if (data.message.list.length > state.hangtime.list.length) {
-        state.hangtime.list = data.message.list
+      state.pears.responsesReceived++
+      if (data.message.list.length > state.pears.list.length) {
+        state.pears.list = data.message.list
       }
-      if (data.message.position > state.hangtime.position) {
-        state.hangtime.position = data.message.position
+      if (data.message.position > state.pears.position) {
+        state.pears.position = data.message.position
       }
-      if (data.message.time > state.hangtime.time) {
-        state.hangtime.time = data.message.time
+      if (data.message.time > state.pears.time) {
+        state.pears.time = data.message.time
       }
       // got response from all the peers
-      if (state.hangtime.responsesReceived === state.hangtime.peers.length) {
-        emitter.emit('hangtime:updateplayer')
+      if (state.pears.responsesReceived === state.pears.peers.length) {
+        emitter.emit('pears:updateplayer')
         emitter.emit('render')
       }
     }
 
     async function handleAdd (data) {
       const peer = await experimental.datPeers.get(data.peer.id)
-      state.hangtime.list.push({
+      state.pears.list.push({
         type: 'song',
         text: data.message.value,
         color: peer.sessionData.color
       })
-      if (state.hangtime.position === state.hangtime.list.length - 1) {
-        emitter.emit('hangtime:updateplayer')
+      if (state.pears.position === state.pears.list.length - 1) {
+        emitter.emit('pears:updateplayer')
       }
       emitter.emit('render')
     }
 
     // wrapper for send.notifyPeers
     async function sendNotifyPeers (newpeer) {
-      state.hangtime.responsesReceived = 0
+      state.pears.responsesReceived = 0
       send.notifyPeers(newpeer)
     }
   }

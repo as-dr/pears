@@ -27,8 +27,8 @@ function plugin () {
 
     function setsource (src) {
       player.src = src
-      if (state.hangtime.time > 0) {
-        player.currentTime = state.hangtime.time
+      if (state.pears.time > 0) {
+        player.currentTime = state.pears.time
       }
     }
 
@@ -45,10 +45,10 @@ function plugin () {
     function toggleMute () {
       if (player.volume === 0) {
         player.volume = 1
-        state.hangtime.muted = false
+        state.pears.muted = false
       } else {
         player.volume = 0
-        state.hangtime.muted = true
+        state.pears.muted = true
       }
       emitter.emit('render')
     }
@@ -61,18 +61,18 @@ function plugin () {
     }
 
     function onended () {
-      state.hangtime.playing = false
-      state.hangtime.time = 0
+      state.pears.playing = false
+      state.pears.time = 0
       emitter.emit('messenger:ended')
-      emitter.emit('hangtime:next')
+      emitter.emit('pears:next')
     }
 
     function onupdate () {
-      if (!state.hangtime.playing) {
-        state.hangtime.playing = true
+      if (!state.pears.playing) {
+        state.pears.playing = true
         emitter.emit('render')
       }
-      state.hangtime.time = player.currentTime
+      state.pears.time = player.currentTime
     }
   }
 }

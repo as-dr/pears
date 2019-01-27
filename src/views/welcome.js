@@ -17,7 +17,7 @@ function view (state, emit) {
   function step0 () {
     return html`
       <body class="w-100 min-vh-100 pa4 lh-copy">
-        ${state.hangtime.space.isOwner ? mainSectionOwners() : mainSectionPeers()}
+        ${state.pears.space.isOwner ? mainSectionOwners() : mainSectionPeers()}
         <div class="flex flex-column items-center justify-around w-100 min-vh-100">
           ${help.render()}
           <div class="flex flex-column items-center justify-around w-100 min-vh-100">
@@ -54,7 +54,7 @@ function view (state, emit) {
         </div>
         <div class="flex flex-column items-start w-100 mw7">
           <div class="br2 ph3 bg-washed-purple">
-            <h2 class="f3 deep-purple mv0 pv1 lh-copy">This is a friends space called ${state.hangtime.space.title}</h2>
+            <h2 class="f3 deep-purple mv0 pv1 lh-copy">This is a friends space called ${state.pears.space.title}</h2>
           </div>
             <h2 class="f3 gray mv3 lh-copy mw6">You're two short steps away from joining.</h2>
             <a href="#" class="link-main hover-button flex f3 deep-purple link mv3 ba ph3 pv1 br1" onclick="${next}">

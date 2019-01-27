@@ -64,7 +64,7 @@ module.exports = class FileUpload extends Component {
     reader.onload = async function (e) {
       var result = e.target.result
       t.visible = false
-      emit('hangtime:file', { name: deburr(file.name), data: result })
+      emit('pears:file', { name: deburr(file.name), data: result })
     }
     reader.readAsArrayBuffer(file)
   }

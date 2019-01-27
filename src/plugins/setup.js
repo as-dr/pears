@@ -24,7 +24,7 @@ function plugin (state, emitter) {
     localStorage.setItem('localarchive', archive.url)
     localStorage.setItem('avatar', color)
     state.setup = false
-    emitter.emit('hangtime:loaded', archive.url)
+    emitter.emit('pears:loaded', archive.url)
   })
   emitter.on(state.events.SETUP_DELETE, function () {
     emitter.emit(state.events.PLAYER_PLAY)
