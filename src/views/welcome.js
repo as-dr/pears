@@ -41,6 +41,12 @@ function view (state, emit) {
                    <a class="link dark-gray" href="http://collletttivo.it/" target="_blank">Halibut <span class="deep-purple">↗</span> </a>
                   </li>
               </ul>
+							<ul class="list pl0 mv4">
+                <li class="f3 deep-purple">View Source</li>
+                <li class="f4">
+                  <a class="link dark-gray" href="https://github.com/as-dr/pears/" target="_blank">On GitHub <span class="deep-purple">↗</span> </a>
+                 </li>
+              </ul>
             </ul>
           </div>
         </div>
