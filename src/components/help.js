@@ -2,7 +2,7 @@ const Component = require('nanocomponent')
 const html = require('choo/html')
 
 const questions = [
-  { q: 'What is this?', r: 'Listen to a music with far away friends. Soundscape is a temporary, collaborative playlist you create with your friends.' },
+  { q: 'What is this?', r: 'Listen to a music with far away friends. Pears is a temporary, collaborative playlist you create with your friends.' },
   { q: "What's DAT?", r: 'DAT is like HTTP. The difference is that DAT is designed for peer-to-peer connections. That means when you use Soundscape, people connect directly to each others computers. With HTTP, people connect to a central computer, usually owned by a company, like when you listen to music on Spotify.' },
   { q: 'Why do I need to use Beaker Browser?', r: "Beaker is the best way to access DAT links. DAT isn't currently supported by most major browsers." },
   { q: 'Can I add streaming links?', r: 'Not yet. This version only lets you add MP3s that you have on your computer. Remember those?' },
