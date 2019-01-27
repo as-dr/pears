@@ -6,8 +6,8 @@ const questions = [
   { q: "What's DAT?", r: 'DAT is like HTTP. The difference is that DAT is designed for peer-to-peer connections. That means when you use Pears, people connect directly to each others computers. With HTTP, people connect to a central computer, usually owned by a company, like when you listen to music on Spotify.' },
   { q: 'Why do I need to use Beaker Browser?', r: "Beaker is the best way to access DAT links. DAT isn't currently supported by most major browsers." },
   { q: 'Can I add streaming links?', r: 'Not yet. This version only lets you add MP3s that you have on your computer. Remember those?' },
-  { q: 'Can I set admin permissions?', r: "They were left out intentionally as a design choice. When everyone can manipulate the space, it limits how many people can listen before disagreements or griefing emerges. We're presently more interested in encouraging the creation of small, trusted spaces for close friends." },
-  { q: "Why isn't my playlist permanent?", r: "Songs added to a playlist are deleted from your hard drive after they're played. This is a small nod of respect to the many artists whose music make our days." }
+  { q: 'Can I set admin permissions?', r: "They were left out by design. When everyone can manipulate the space, it limits how many people can listen before disagreements or griefing emerges. We're more interested in encouraging the creation of small, trusted spaces for close friends." },
+  { q: "Why isn't my playlist permanent?", r: "Songs added to a playlist are deleted after they're played. It's a small nod of respect to the many artists whose music make our days, and a reminder that all good things must come to an end." }
 ]
 
 module.exports = class Help extends Component {
