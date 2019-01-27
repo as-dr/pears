@@ -46,11 +46,11 @@ function plugin () {
     emitter.on('pears:updateplayer', updatePlayer)
 
     async function loaded (datUrl) {
-      state.pears.space = await space.getInfo()
       state.loaded = true
 
       localArchive = localArchive || datUrl
       if (state.p2p && !state.setup) {
+        state.pears.space = await space.getInfo()
         archive = new DatArchive(localArchive)
 
         const color = localStorage.getItem('avatar') || 'salmon'
