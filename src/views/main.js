@@ -19,7 +19,7 @@ function view (state, emit) {
   return html`
     <body class="flex flex-row w-100 pa4 f3 lh-copy items-start justify-start" ondragover="${showUploader}">
     <div class="flex flex-column items-start w-100 h-100 mw5 justify-start">
-    <a href="#" class="flex link link-mini f4 bb bw1  gray ml3 mt4" onclick="${back}">Leave</a>
+    <a href="#" class="flex link link-mini f4 bb bw1 gray ml3 mt4 ttu uppercase pt1" onclick="${back}">Leave</a>
     </div>
       <div class="flex flex-column justify-start items-start w-100 min-vh-100 mw7">
         <div class="flex flex-row items-center  w-100 mw7 mt4 mb4">
