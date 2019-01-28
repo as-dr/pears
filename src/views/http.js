@@ -19,7 +19,7 @@ function view (state, emit) {
       <div class="flex flex-column items-start w-100 mw7">
         <h2 class="f3 gray mv3 lh-copy mw6">Pears only works with the Beaker Browser. Click below to download it.</h2>
       </div>
-      <div class="flex flex-row items-center justify-start w-100 mw8 ">
+      <div class="flex flex-row items-center justify-start w-100 mw7">
         <a href="https://beakerbrowser.com/" class="link-main hover-button flex f3 deep-purple link mv3 ba ph3 pv1 br1">
           Download Beaker Browser <span class="flex ico-link ml3 f5 self-center">▶</span>
         </a>
@@ -47,6 +47,15 @@ function view (state, emit) {
             <li class="f4">
               <a class="link dark-gray" href="https://rsms.me/inter/" target="_blank">Inter UI <span class="deep-purple">↗</span> </a>
             </li>
+            <li class="f4">
+              <a class="link dark-gray" href="http://collletttivo.it/" target="_blank">Halibut <span class="deep-purple">↗</span> </a>
+           </li>
+          </ul>
+          <ul class="list pl0 mv4">
+            <li class="f3 deep-purple">View Source</li>
+            <li class="f4">
+              <a class="link dark-gray" href="https://github.com/as-dr/pears/" target="_blank">On GitHub <span class="deep-purple">↗</span> </a>
+             </li>
           </ul>
         </ul>
         </div>
