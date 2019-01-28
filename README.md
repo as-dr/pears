@@ -1,3 +1,5 @@
+![](renoir-pears-c1890.jpg =320x)
+
 # Pears
 v0.5
 
@@ -18,7 +20,11 @@ To join a space simply navigate to the `dat://` URL you got from your friend, cl
 
 ## NB
 
-Currently, only mp3 files can be streamed. Please expect stability issues and bugs.
+1. **Currently, only `mp3` files can be streamed.** Remember them?
+
+1. Please expect stability issues and bugs.
+
+1. Streaming performance will vary depending on peer connections & locations
 
 
 ## Development
