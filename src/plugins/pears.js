@@ -128,7 +128,8 @@ function plugin () {
     }
 
     function inList (file) {
-      for (var i = 0; i < state.pears.list.length; i++) {
+      // the position is already incremented here
+      for (var i = state.pears.position; i < state.pears.list.length; i++) {
         if (state.pears.list[i].text === file) return true
       }
       return false
